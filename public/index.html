@@ -6,8 +6,8 @@
 <title>رامین جلادت | دپارتمانت زبان مجموعه مدارس سلام</title>
 <meta name="description" content="وب‌سایت شخصی رامین جلادت — معلم زبان انگلیسی و مدیر دپارتمانت زبان مجموعه مدارس سلام؛ تدریس در همه سطوح، طراحی دوره و مربیگری معلمان.">
 <meta name="author" content="Ramin Jelladat">
+<meta name="theme-color" content="#141110" media="(prefers-color-scheme: dark)">
 <meta name="theme-color" content="#F4EEE1" media="(prefers-color-scheme: light)">
-<meta name="theme-color" content="#161210" media="(prefers-color-scheme: dark)">
 <link rel="canonical" href="https://ramin-djaladat.kdns.fr/">
 
 <meta property="og:type" content="website">
@@ -15,7 +15,7 @@
 <meta property="og:url" content="https://ramin-djaladat.kdns.fr/">
 <meta property="og:title" content="رامین جلادت | دپارتمانت زبان مجموعه مدارس سلام">
 <meta property="og:description" content="معلم زبان انگلیسی و مدیر دپارتمانت زبان مجموعه مدارس سلام — از کلاس درس تا طراحی برنامه درسی و مربیگری معلمان.">
-<meta property="og:image" content="https://ramin-djaladat.kdns.fr/assets/img/og.jpg">
+<meta property="og:image" content="https://ramin-djaladat.kdns.fr/assets/img/photos/hero.jpg">
 <meta property="og:locale" content="fa_IR">
 <meta property="og:locale:alternate" content="en_US">
 <meta name="twitter:card" content="summary_large_image">
@@ -24,8 +24,13 @@
 <link rel="manifest" href="site.webmanifest">
 <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
 
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600&display=swap">
+
 <link rel="preload" href="assets/fonts/Estedad-VF.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/fonts/Fraunces-Italic-VF.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/img/photos/hero.jpg" as="image">
 <link rel="stylesheet" href="assets/css/main.css">
 
 <script type="application/ld+json">
@@ -49,9 +54,25 @@
 </head>
 <body>
 
+<!-- ═══ پرده‌ی ورود ═══ -->
+<div class="loader" id="loader">
+  <div class="loader-mark-group">
+    <span class="loader-mark" dir="ltr">RAMIN&nbsp;JELLADAT</span>
+    <span class="loader-sub" data-i18n="loader.sub">دپارتمانت زبان انگلیسی · مدارس سلام</span>
+  </div>
+  <span class="loader-checker" aria-hidden="true"></span>
+  <div class="loader-foot">
+    <span class="loader-pct" id="loaderPct" dir="ltr">0%</span>
+    <span class="loader-meter" aria-hidden="true"><span class="loader-bar" id="loaderBar"></span></span>
+    <span class="loader-est" dir="ltr">EST.&nbsp;1385</span>
+  </div>
+</div>
+
 <a class="skip-link" href="#main" data-i18n="skip">پرش به محتوای اصلی</a>
 <div class="progress" id="progress" aria-hidden="true"></div>
 <div class="grain" aria-hidden="true"></div>
+<div class="cursor-dot" id="cursorDot" aria-hidden="true"></div>
+<div class="cursor-ring" id="cursorRing" aria-hidden="true"></div>
 
 <header class="site-header" id="siteHeader">
   <div class="header-inner">
@@ -95,82 +116,90 @@
 
 <main id="main">
 
-  <!-- ═══════════ هیرو ═══════════ -->
-  <section id="top" class="hero">
-    <div class="container hero-grid">
-      <div class="hero-text">
-        <p class="kicker reveal" data-i18n="hero.kicker">دپارتمانت زبان انگلیسی · مجموعه مدارس سلام</p>
-        <h1 class="hero-name reveal">
-          <span data-i18n="hero.name1">رامین</span>
-          <span class="accent-wrap"><span class="accent" data-i18n="hero.name2">جلادت</span>
-            <svg class="ink-line" viewBox="0 0 220 14" aria-hidden="true" preserveAspectRatio="none"><path d="M4 9 C 40 4, 70 12, 108 8 S 180 5, 216 9" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round"/></svg>
-          </span>
-        </h1>
-        <p class="hero-role reveal"><span id="typed">مدیر دپارتمانت زبان</span><span class="caret" aria-hidden="true"></span></p>
-        <p class="hero-desc reveal" data-i18n="hero.desc">از سال ۱۳۸۵، هم در کلاس و هم در اتاق معلمان؛ یادگیری انگلیسی را از یک درس خشک به تجربه‌ای زنده تبدیل می‌کنم — از نخستین «Hello» تا لحظه‌ای که زبان‌آموز بی‌آنکه به قاعده فکر کند، حرف می‌زند.</p>
-        <div class="hero-ctas reveal">
-          <a class="btn btn-solid" href="#contact">
-            <span data-i18n="hero.cta1">هماهنگی کلاس</span>
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-          </a>
-          <a class="btn btn-ghost" href="#about"><span data-i18n="hero.cta2">بیشتر بدانید</span></a>
-        </div>
+  <!-- ═══════════ هیرو · صحنه‌ی تاریک ═══════════ -->
+  <div class="hero-slot" id="top">
+    <section class="hero" id="hero">
+      <div class="hero-bg" aria-hidden="true">
+        <img src="assets/img/photos/hero.jpg" alt="" id="heroPhoto" fetchpriority="high">
+        <span class="hero-veil"></span>
+        <span class="hero-halftone"></span>
+      </div>
+      <div class="hero-lines" aria-hidden="true">
+        <span></span><span></span><span></span><span></span><span></span>
       </div>
 
-      <div class="hero-side reveal">
-        <div class="deck-zone">
-          <svg class="seal" viewBox="0 0 240 240" aria-hidden="true">
-            <defs>
-              <path id="sealPath" d="M120,120 m -88,0 a 88,88 0 1,1 176,0 a 88,88 0 1,1 -176,0"/>
-            </defs>
-            <circle class="ring-outer" cx="120" cy="120" r="114" fill="none" stroke="currentColor" stroke-width="1.4"/>
-            <circle class="ring-inner" cx="120" cy="120" r="62" fill="none" stroke="currentColor" stroke-width="1"/>
-            <g class="seal-rotor">
-              <text class="seal-text"><textPath href="#sealPath">ENGLISH LANGUAGE DEPT. • SALAM SCHOOLS • EST. 1385 •&#160;</textPath></text>
-            </g>
-            <text class="seal-mono" x="120" y="137" text-anchor="middle">RJ</text>
-          </svg>
-          <button type="button" class="deck" id="deck" aria-label="کارت واژه — برای واژه بعدی کلیک کنید">
-            <span class="deck-card is-b2" aria-hidden="true"></span>
-            <span class="deck-card is-b1" aria-hidden="true"></span>
-            <span class="deck-card is-top" id="deckTop">
-              <span class="deck-face deck-front">
-                <span class="deck-pos" id="deckPos">اسم</span>
-                <span class="deck-word" id="deckWord">Serendipity</span>
-                <span class="deck-ipa" id="deckIpa" dir="ltr">/ˌserənˈdipəti/</span>
-              </span>
-              <span class="deck-face deck-back">
-                <span class="deck-fa" id="deckFa">اتفاق خوشایندی که بی‌خبر سراغت می‌آید</span>
-                <span class="deck-ex" id="deckEx">مثل پیدا کردن کتابی که دنبالش نبودی.</span>
-              </span>
+      <div class="container hero-grid">
+        <div class="hero-text">
+          <p class="hero-kicker-en" id="kickerEn" dir="ltr">ENGLISH LANGUAGE DEPARTMENT — SALAM SCHOOLS</p>
+          <p class="kicker rise" style="--d:.15s"><span data-i18n="hero.kicker">دپارتمانت زبان انگلیسی · مجموعه مدارس سلام</span></p>
+          <h1 class="hero-name" id="heroName" aria-label="رامین جلادت">
+            <span class="w"><span class="wi" data-i18n="hero.name1">رامین</span></span>
+            <span class="w accent-wrap"><span class="wi accent" data-i18n="hero.name2">جلادت</span>
+              <svg class="ink-line" viewBox="0 0 220 14" aria-hidden="true" preserveAspectRatio="none"><path d="M4 9 C 40 4, 70 12, 108 8 S 180 5, 216 9" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round"/></svg>
             </span>
-          </button>
-          <p class="deck-hint"><span class="deck-hint-dot" aria-hidden="true"></span><span data-i18n="hero.deckHint">هر کلیک، یک واژه‌ی تازه</span></p>
+          </h1>
+          <p class="hero-role rise" style="--d:.55s"><span id="typed">مدیر دپارتمانت زبان</span><span class="caret" aria-hidden="true"></span></p>
+          <p class="hero-desc rise" style="--d:.68s" data-i18n="hero.desc">از سال ۱۳۸۵، هم در کلاس و هم در اتاق معلمان؛ یادگیری انگلیسی را از یک درس خشک به تجربه‌ای زنده تبدیل می‌کنم — از نخستین «Hello» تا لحظه‌ای که زبان‌آموز بی‌آنکه به قاعده فکر کند، حرف می‌زند.</p>
+          <div class="hero-ctas rise" style="--d:.8s">
+            <a class="btn btn-solid" href="#contact">
+              <span data-i18n="hero.cta1">هماهنگی کلاس</span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </a>
+            <a class="btn btn-ghost" href="#about"><span data-i18n="hero.cta2">بیشتر بدانید</span></a>
+          </div>
+          <p class="hero-meta rise" style="--d:.95s" dir="ltr" aria-hidden="true">
+            <span class="hm-checker"></span> EST. 1385 · TEHRAN · 2000+ LEARNERS · LEVELS A1→C1
+          </p>
         </div>
-        <p class="margin-note reveal"><svg viewBox="0 0 60 30" class="mn-arrow" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M56 4 C 40 6, 24 12, 8 24"/><path d="M15 15 L 8 24 L 19 26"/></svg><span data-i18n="hero.note">هر روز، فقط یک واژه — قولِ معلم.</span></p>
+
+        <div class="hero-side">
+          <div class="deck-zone rise" style="--d:.7s">
+            <svg class="seal" viewBox="0 0 240 240" aria-hidden="true">
+              <defs>
+                <path id="sealPath" d="M120,120 m -88,0 a 88,88 0 1,1 176,0 a 88,88 0 1,1 -176,0"/>
+              </defs>
+              <circle class="ring-outer" cx="120" cy="120" r="114" fill="none" stroke="currentColor" stroke-width="1.4"/>
+              <circle class="ring-inner" cx="120" cy="120" r="62" fill="none" stroke="currentColor" stroke-width="1"/>
+              <g class="seal-rotor">
+                <text class="seal-text"><textPath href="#sealPath">ENGLISH LANGUAGE DEPT. • SALAM SCHOOLS • EST. 1385 •&#160;</textPath></text>
+              </g>
+              <text class="seal-mono" x="120" y="137" text-anchor="middle">RJ</text>
+            </svg>
+            <button type="button" class="deck" id="deck" aria-label="کارت واژه — برای واژه بعدی کلیک کنید">
+              <span class="deck-card is-b2" aria-hidden="true"></span>
+              <span class="deck-card is-b1" aria-hidden="true"></span>
+              <span class="deck-card is-top" id="deckTop">
+                <span class="deck-face deck-front">
+                  <span class="deck-pos" id="deckPos">اسم</span>
+                  <span class="deck-word" id="deckWord">Serendipity</span>
+                  <span class="deck-ipa" id="deckIpa" dir="ltr">/ˌserənˈdipəti/</span>
+                </span>
+                <span class="deck-face deck-back">
+                  <span class="deck-fa" id="deckFa">اتفاق خوشایندی که بی‌خبر سراغت می‌آید</span>
+                  <span class="deck-ex" id="deckEx">مثل پیدا کردن کتابی که دنبالش نبودی.</span>
+                </span>
+              </span>
+            </button>
+            <p class="deck-hint"><span class="deck-hint-dot" aria-hidden="true"></span><span data-i18n="hero.deckHint">هر کلیک، یک واژه‌ی تازه</span></p>
+          </div>
+          <p class="margin-note rise" style="--d:.9s"><svg viewBox="0 0 60 30" class="mn-arrow" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M56 4 C 40 6, 24 12, 8 24"/><path d="M15 15 L 8 24 L 19 26"/></svg><span data-i18n="hero.note">هر روز، فقط یک واژه — قولِ معلم.</span></p>
+        </div>
       </div>
-    </div>
-    <div class="container scroll-hint reveal" aria-hidden="true">
-      <span class="vline"></span>
-      <span data-i18n="hero.scroll">پایین‌تر، ادامه‌ی دفتر</span>
-    </div>
-  </section>
+      <div class="container scroll-hint" aria-hidden="true">
+        <span class="vline"></span>
+        <span data-i18n="hero.scroll">پایین‌تر، ادامه‌ی دفتر</span>
+      </div>
+    </section>
+  </div>
 
   <!-- ═══════════ نوار واژه‌ها ═══════════ -->
   <div class="marquee" aria-hidden="true">
     <div class="marquee-track" id="marqueeTrack"></div>
   </div>
 
-  <!-- ═══════════ فصل ۰۱ · درباره ═══════════ -->
-  <section id="about">
+  <!-- ═══════════ باند آمار ═══════════ -->
+  <section class="night stats-band" id="statsBand" aria-label="آمار">
     <div class="container">
-      <header class="chapter reveal">
-        <span class="chapter-no" data-i18n="about.num">فصل ۰۱</span>
-        <span class="chapter-rule"></span>
-        <span class="chapter-label" data-i18n="about.label">درباره‌ام</span>
-        <span class="chapter-diamond" aria-hidden="true"></span>
-      </header>
-
       <div class="stats reveal" id="stats">
         <div class="stat">
           <span class="stat-num" data-count="12" data-plus="+">۰</span>
@@ -184,20 +213,48 @@
           <span class="stat-num" data-count="2000" data-plus="+">۰</span>
           <span class="stat-label" data-i18n="stats.s3">زبان‌آموز در این مسیر</span>
         </div>
-      </div>
-
-      <div class="about-grid">
-        <h2 class="about-heading reveal" data-i18n="about.heading">زبان برای من درس نیست؛ راهِ حرف زدن با دنیاست.</h2>
-        <div class="about-texts reveal">
-          <p data-i18n="about.p1">من رامین جلادت هستم؛ معلم زبان انگلیسی و مدیر دپارتمانت زبان مجموعه مدارس سلام. سال‌هاست در این مجموعه، کنار همکاران و زبان‌آموزان، ساختاری ساخته‌ایم که یادگیری زبان را از پایه‌های اول تا دوره بزرگسالان، پیوسته و هدفمند پیش می‌برد.</p>
-          <p data-i18n="about.p2">باور دارم کلاس زبان خوب جایی است که زبان‌آموز جرئت می‌کند حرف بزند، اشتباه کند و دوباره امتحان کند. نقش من همین است: ساختن و نگه‌داشتن این فضا — برای زبان‌آموزان و برای معلمانی که با آن‌ها کار می‌کنم.</p>
+        <div class="stat">
+          <span class="stat-num" data-count="6">۰</span>
+          <span class="stat-label" data-i18n="stats.s4">برنامه‌ی آموزشی، از کودک تا مربیگری</span>
         </div>
       </div>
     </div>
   </section>
 
+  <!-- ═══════════ فصل ۰۱ · درباره ═══════════ -->
+  <section id="about" class="paper">
+    <span class="ghost-word" data-gx="-4" aria-hidden="true" dir="ltr">ABOUT</span>
+    <div class="container">
+      <header class="chapter reveal">
+        <span class="chapter-no" data-i18n="about.num">فصل ۰۱</span>
+        <span class="chapter-rule"></span>
+        <span class="chapter-label" data-i18n="about.label">درباره‌ام</span>
+        <span class="chapter-diamond" aria-hidden="true"></span>
+      </header>
+
+      <div class="about-grid">
+        <div class="about-main">
+          <h2 class="about-heading reveal" data-i18n="about.heading">زبان برای من درس نیست؛ راهِ حرف زدن با دنیاست.</h2>
+          <div class="about-texts reveal">
+            <p data-i18n="about.p1">من رامین جلادت هستم؛ معلم زبان انگلیسی و مدیر دپارتمانت زبان مجموعه مدارس سلام. سال‌هاست در این مجموعه، کنار همکاران و زبان‌آموزان، ساختاری ساخته‌ایم که یادگیری زبان را از پایه‌های اول تا دوره بزرگسالان، پیوسته و هدفمند پیش می‌برد.</p>
+            <p data-i18n="about.p2">باور دارم کلاس زبان خوب جایی است که زبان‌آموز جرئت می‌کند حرف بزند، اشتباه کند و دوباره امتحان کند. نقش من همین است: ساختن و نگه‌داشتن این فضا — برای زبان‌آموزان و برای معلمانی که با آن‌ها کار می‌کنم.</p>
+          </div>
+          <p class="margin-note reveal"><svg viewBox="0 0 60 30" class="mn-arrow" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M56 4 C 40 6, 24 12, 8 24"/><path d="M15 15 L 8 24 L 19 26"/></svg><span data-i18n="about.note">کلاس، جایی است که اشتباه کردن مجاز است.</span></p>
+        </div>
+        <figure class="photo-tilt reveal">
+          <img src="assets/img/photos/about.jpg" alt="کلاس زبان در نور غروب" loading="lazy">
+          <figcaption class="glass-cap">
+            <strong data-i18n="about.capT">اتاق درس، ساعت طلایی</strong>
+            <span data-i18n="about.capD">جایی که هر «Hello» یک شروع است</span>
+          </figcaption>
+          <span class="photo-chip" dir="ltr" aria-hidden="true">SALAM SCHOOLS — LANGUAGE DEPT.</span>
+        </figure>
+      </div>
+    </div>
+  </section>
+
   <!-- ═══════════ فصل ۰۲ · مسیر حرفه‌ای ═══════════ -->
-  <section id="path">
+  <section id="path" class="night">
     <div class="container">
       <header class="chapter reveal">
         <span class="chapter-no" data-i18n="path.num">فصل ۰۲</span>
@@ -206,34 +263,38 @@
         <span class="chapter-diamond" aria-hidden="true"></span>
       </header>
 
-      <ol class="timeline">
-        <li class="t-item reveal">
-          <span class="t-year" data-i18n="path.t1.year">۱۳۸۵</span>
-          <h3 class="t-title" data-i18n="path.t1.title">آغاز تدریس</h3>
-          <p class="t-text" data-i18n="path.t1.text">شروع تدریس انگلیسی در آموزشگاه‌ها و مدارس؛ از همان ابتدا باور داشتم زبان باید در کلاس «استفاده» شود، نه فقط «تدریس».</p>
-        </li>
-        <li class="t-item reveal">
-          <span class="t-year" data-i18n="path.t2.year">۱۳۹۰</span>
-          <h3 class="t-title" data-i18n="path.t2.title">پیوستن به مدارس سلام</h3>
-          <p class="t-text" data-i18n="path.t2.text">همکاری با مجموعه مدارس سلام و آغاز ساخت برنامه یکپارچه زبان انگلیسی برای مقاطع مختلف تحصیلی.</p>
-        </li>
-        <li class="t-item reveal">
-          <span class="t-year" data-i18n="path.t3.year">۱۳۹۶</span>
-          <h3 class="t-title" data-i18n="path.t3.title">مدیریت دپارتمانت زبان</h3>
-          <p class="t-text" data-i18n="path.t3.text">رهبری تیم معلمان، طراحی سرفصل‌ها و آزمون‌های جایگاه‌یابی، و نظارت بر کیفیت آموزش در همه سطوح.</p>
-          <p class="margin-note t-note reveal"><svg viewBox="0 0 60 30" class="mn-arrow" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M56 4 C 40 6, 24 12, 8 24"/><path d="M15 15 L 8 24 L 19 26"/></svg><span data-i18n="path.note">همین سال‌ها بود که تقویم آموزشی و آزمون سطح‌سنجی یکپارچه متولد شد.</span></p>
-        </li>
-        <li class="t-item reveal">
-          <span class="t-year" data-i18n="path.t4.year">امروز</span>
-          <h3 class="t-title" data-i18n="path.t4.title">تدریس، رهبری، پرورش مربی</h3>
-          <p class="t-text" data-i18n="path.t4.text">ادامه همین مسیر؛ کنار کلاس‌هایی که هنوز هر هفته تدریس می‌کنم و معلمان تازه‌ای که هر سال به تیم اضافه می‌شوند.</p>
-        </li>
-      </ol>
+      <div class="timeline" id="timeline">
+        <span class="t-rail" aria-hidden="true"><span class="t-thread" id="tThread"></span><span class="t-marker" id="tMarker"></span></span>
+        <ol>
+          <li class="t-item reveal">
+            <span class="t-year split-chars" data-i18n="path.t1.year">۱۳۸۵</span>
+            <h3 class="t-title" data-i18n="path.t1.title">آغاز تدریس</h3>
+            <p class="t-text" data-i18n="path.t1.text">شروع تدریس انگلیسی در آموزشگاه‌ها و مدارس؛ از همان ابتدا باور داشتم زبان باید در کلاس «استفاده» شود، نه فقط «تدریس».</p>
+          </li>
+          <li class="t-item reveal">
+            <span class="t-year split-chars" data-i18n="path.t2.year">۱۳۹۰</span>
+            <h3 class="t-title" data-i18n="path.t2.title">پیوستن به مدارس سلام</h3>
+            <p class="t-text" data-i18n="path.t2.text">همکاری با مجموعه مدارس سلام و آغاز ساخت برنامه یکپارچه زبان انگلیسی برای مقاطع مختلف تحصیلی.</p>
+          </li>
+          <li class="t-item reveal">
+            <span class="t-year split-chars" data-i18n="path.t3.year">۱۳۹۶</span>
+            <h3 class="t-title" data-i18n="path.t3.title">مدیریت دپارتمانت زبان</h3>
+            <p class="t-text" data-i18n="path.t3.text">رهبری تیم معلمان، طراحی سرفصل‌ها و آزمون‌های جایگاه‌یابی، و نظارت بر کیفیت آموزش در همه سطوح.</p>
+            <p class="margin-note t-note reveal"><svg viewBox="0 0 60 30" class="mn-arrow" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M56 4 C 40 6, 24 12, 8 24"/><path d="M15 15 L 8 24 L 19 26"/></svg><span data-i18n="path.note">همین سال‌ها بود که تقویم آموزشی و آزمون سطح‌سنجی یکپارچه متولد شد.</span></p>
+          </li>
+          <li class="t-item reveal">
+            <span class="t-year split-chars" data-i18n="path.t4.year">امروز</span>
+            <h3 class="t-title" data-i18n="path.t4.title">تدریس، رهبری، پرورش مربی</h3>
+            <p class="t-text" data-i18n="path.t4.text">ادامه همین مسیر؛ کنار کلاس‌هایی که هنوز هر هفته تدریس می‌کنم و معلمان تازه‌ای که هر سال به تیم اضافه می‌شوند.</p>
+          </li>
+        </ol>
+      </div>
     </div>
   </section>
 
   <!-- ═══════════ فصل ۰۳ · تخصص‌ها ═══════════ -->
-  <section id="skills">
+  <section id="skills" class="paper">
+    <span class="ghost-word" data-gx="4" aria-hidden="true" dir="ltr">SKILLS</span>
     <div class="container">
       <header class="chapter reveal">
         <span class="chapter-no" data-i18n="skills.num">فصل ۰۳</span>
@@ -288,7 +349,8 @@
   </section>
 
   <!-- ═══════════ فصل ۰۴ · برنامه‌ها ═══════════ -->
-  <section id="programs">
+  <section id="programs" class="paper soft">
+    <span class="ghost-word" data-gx="-3" aria-hidden="true" dir="ltr">PROGRAMS</span>
     <div class="container">
       <header class="chapter reveal">
         <span class="chapter-no" data-i18n="programs.num">فصل ۰۴</span>
@@ -297,90 +359,95 @@
         <span class="chapter-diamond" aria-hidden="true"></span>
       </header>
 
-      <div class="programs-grid">
-        <article class="program reveal">
-          <span class="program-idx" aria-hidden="true">۰۱</span>
-          <div class="program-head">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="3.2"/><path d="M6.5 19c.8-3 2.9-4.5 5.5-4.5s4.7 1.5 5.5 4.5"/></svg>
-            <h3 data-i18n="programs.p1.title">کودکان <i>Kids</i></h3>
-          </div>
-          <p class="program-meta" data-i18n="programs.p1.meta">۶ تا ۱۲ سال</p>
-          <p class="program-desc" data-i18n="programs.p1.desc">یادگیری با بازی، قصه و آهنگ؛ پایه‌ریزی تلفظ درست و اعتمادبه‌نفس، بی‌آنکه بچه فکر کند «درس» دارد.</p>
-          <div class="chips"><span class="chip">Pre-A1</span><span class="chip">A1</span><span class="chip">A2</span></div>
-        </article>
-
-        <article class="program reveal">
-          <span class="program-idx" aria-hidden="true">۰۲</span>
-          <div class="program-head">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19.5V6a2 2 0 0 1 2-2h14v14H6.5a2.5 2.5 0 0 0 0 5H20"/><path d="M9 8h7M9 12h5"/></svg>
-            <h3 data-i18n="programs.p2.title">نوجوانان <i>Teens</i></h3>
-          </div>
-          <p class="program-meta" data-i18n="programs.p2.meta">۱۳ تا ۱۷ سال</p>
-          <p class="program-desc" data-i18n="programs.p2.desc">تقویت چهار مهارت برای مدرسه و آینده؛ همراه با آمادگی آزمون‌های درون‌مدرسه‌ای و بین‌المللی.</p>
-          <div class="chips"><span class="chip">A2</span><span class="chip">B1</span><span class="chip">B2</span></div>
-        </article>
-
-        <article class="program reveal">
-          <span class="program-idx" aria-hidden="true">۰۳</span>
-          <div class="program-head">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 11 12 5l9 6"/><path d="M5 10v9a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-9"/><path d="M9.5 20v-5h5v5"/></svg>
-            <h3 data-i18n="programs.p3.title">بزرگسالان <i>Adults</i></h3>
-          </div>
-          <p class="program-meta" data-i18n="programs.p3.meta">از مبتدی مطلق تا پیشرفته</p>
-          <p class="program-desc" data-i18n="programs.p3.desc">برنامه‌ی شخصی بر اساس هدف هر نفر؛ برای کار، مهاجرت یا لذتِ فهمیدن فیلم بدون زیرنویس.</p>
-          <div class="chips"><span class="chip">A1</span><span class="chip">A2</span><span class="chip">B1</span><span class="chip">B2</span><span class="chip">C1</span></div>
-        </article>
-
-        <article class="program reveal">
-          <span class="program-idx" aria-hidden="true">۰۴</span>
-          <div class="program-head">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="10" width="18" height="7" rx="7"/><path d="M8 13.5h.01M12 13.5h.01M16 13.5h.01"/><path d="M7 10V6.5A2.5 2.5 0 0 1 9.5 4h5A2.5 2.5 0 0 1 17 6.5V10"/></svg>
-            <h3 data-i18n="programs.p4.title">باشگاه مکالمه <i>Conversation</i></h3>
-          </div>
-          <p class="program-meta" data-i18n="programs.p4.meta">هر هفته · گروه‌های کوچک</p>
-          <p class="program-desc" data-i18n="programs.p4.desc">درباره‌ی موضوعات واقعی حرف می‌زنیم؛ از خبر هفته تا یک بحث ساده — زبان همین‌جا «زنده» می‌شود.</p>
-          <div class="chips"><span class="chip">B1+</span></div>
-        </article>
-
-        <article class="program reveal">
-          <span class="program-idx" aria-hidden="true">۰۵</span>
-          <div class="program-head">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.2"/></svg>
-            <h3 data-i18n="programs.p5.title">آمادگی آیلتس و توفل <i>IELTS / TOEFL</i></h3>
-          </div>
-          <p class="program-meta" data-i18n="programs.p5.meta">آزمون بین‌المللی</p>
-          <p class="program-desc" data-i18n="programs.p5.desc">استراتژی هر بخش، تمرین هدفمند، ماک‌آزمون منظم و بازخورد دقیق — نه شگردِ شب‌امتحانی، بلکه آمادگی واقعی.</p>
-          <div class="chips"><span class="chip">B1+</span><span class="chip">B2</span><span class="chip">C1</span></div>
-        </article>
-
-        <article class="program reveal">
-          <span class="program-idx" aria-hidden="true">۰۶</span>
-          <div class="program-head">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="12" rx="1.5"/><path d="M12 16v4M8.5 20h7"/><path d="m7.5 12 3-3 2.5 2 3.5-3.5"/></svg>
-            <h3 data-i18n="programs.p6.title">کارگاه معلمان <i>Teacher Training</i></h3>
-          </div>
-          <p class="program-meta" data-i18n="programs.p6.meta">ویژه همکاران</p>
-          <p class="program-desc" data-i18n="programs.p6.desc">روش تدریس، مدیریت کلاس و بازخورد حرفه‌ای؛ چون کیفیت هر کلاس به کیفیت مربی آن است.</p>
-          <div class="chips"><span class="chip chip-green" data-i18n="programs.p6.chip">حضوری و آنلاین</span></div>
-        </article>
+      <div class="prog-list" id="progList">
+        <a class="p-row reveal" href="#contact" data-photo="assets/img/photos/kids.jpg">
+          <span class="p-idx" dir="ltr">01</span>
+          <span class="p-main">
+            <span class="p-name" data-i18n="programs.p1.title">کودکان <i>Kids</i></span>
+            <span class="p-meta" data-i18n="programs.p1.meta">۶ تا ۱۲ سال</span>
+          </span>
+          <span class="p-desc" data-i18n="programs.p1.desc">یادگیری با بازی، قصه و آهنگ؛ پایه‌ریزی تلفظ درست و اعتمادبه‌نفس، بی‌آنکه بچه فکر کند «درس» دارد.</span>
+          <span class="p-chips"><span class="chip">Pre-A1</span><span class="chip">A1</span><span class="chip">A2</span></span>
+          <span class="p-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </a>
+        <a class="p-row reveal" href="#contact" data-photo="assets/img/photos/teens.jpg">
+          <span class="p-idx" dir="ltr">02</span>
+          <span class="p-main">
+            <span class="p-name" data-i18n="programs.p2.title">نوجوانان <i>Teens</i></span>
+            <span class="p-meta" data-i18n="programs.p2.meta">۱۳ تا ۱۷ سال</span>
+          </span>
+          <span class="p-desc" data-i18n="programs.p2.desc">تقویت چهار مهارت برای مدرسه و آینده؛ همراه با آمادگی آزمون‌های درون‌مدرسه‌ای و بین‌المللی.</span>
+          <span class="p-chips"><span class="chip">A2</span><span class="chip">B1</span><span class="chip">B2</span></span>
+          <span class="p-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </a>
+        <a class="p-row reveal" href="#contact" data-photo="assets/img/photos/adults.jpg">
+          <span class="p-idx" dir="ltr">03</span>
+          <span class="p-main">
+            <span class="p-name" data-i18n="programs.p3.title">بزرگسالان <i>Adults</i></span>
+            <span class="p-meta" data-i18n="programs.p3.meta">از مبتدی مطلق تا پیشرفته</span>
+          </span>
+          <span class="p-desc" data-i18n="programs.p3.desc">برنامه‌ی شخصی بر اساس هدف هر نفر؛ برای کار، مهاجرت یا لذتِ فهمیدن فیلم بدون زیرنویس.</span>
+          <span class="p-chips"><span class="chip">A1</span><span class="chip">A2</span><span class="chip">B1</span><span class="chip">B2</span><span class="chip">C1</span></span>
+          <span class="p-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </a>
+        <a class="p-row reveal" href="#contact" data-photo="assets/img/photos/conversation.jpg">
+          <span class="p-idx" dir="ltr">04</span>
+          <span class="p-main">
+            <span class="p-name" data-i18n="programs.p4.title">باشگاه مکالمه <i>Conversation</i></span>
+            <span class="p-meta" data-i18n="programs.p4.meta">هر هفته · گروه‌های کوچک</span>
+          </span>
+          <span class="p-desc" data-i18n="programs.p4.desc">درباره‌ی موضوعات واقعی حرف می‌زنیم؛ از خبر هفته تا یک بحث ساده — زبان همین‌جا «زنده» می‌شود.</span>
+          <span class="p-chips"><span class="chip">B1+</span></span>
+          <span class="p-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </a>
+        <a class="p-row reveal" href="#contact" data-photo="assets/img/photos/ielts.jpg">
+          <span class="p-idx" dir="ltr">05</span>
+          <span class="p-main">
+            <span class="p-name" data-i18n="programs.p5.title">آمادگی آیلتس و توفل <i>IELTS / TOEFL</i></span>
+            <span class="p-meta" data-i18n="programs.p5.meta">آزمون بین‌المللی</span>
+          </span>
+          <span class="p-desc" data-i18n="programs.p5.desc">استراتژی هر بخش، تمرین هدفمند، ماک‌آزمون منظم و بازخورد دقیق — نه شگردِ شب‌امتحانی، بلکه آمادگی واقعی.</span>
+          <span class="p-chips"><span class="chip">B1+</span><span class="chip">B2</span><span class="chip">C1</span></span>
+          <span class="p-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </a>
+        <a class="p-row reveal" href="#contact" data-photo="assets/img/photos/training.jpg">
+          <span class="p-idx" dir="ltr">06</span>
+          <span class="p-main">
+            <span class="p-name" data-i18n="programs.p6.title">کارگاه معلمان <i>Teacher Training</i></span>
+            <span class="p-meta" data-i18n="programs.p6.meta">ویژه همکاران</span>
+          </span>
+          <span class="p-desc" data-i18n="programs.p6.desc">روش تدریس، مدیریت کلاس و بازخورد حرفه‌ای؛ چون کیفیت هر کلاس به کیفیت مربی آن است.</span>
+          <span class="p-chips"><span class="chip chip-green" data-i18n="programs.p6.chip">حضوری و آنلاین</span></span>
+          <span class="p-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </a>
       </div>
+
+      <figure class="float-photo" id="floatPhoto" aria-hidden="true">
+        <img src="assets/img/photos/kids.jpg" alt="" id="floatImg">
+        <figcaption class="glass-cap"><span id="floatCap" dir="auto"></span></figcaption>
+      </figure>
 
       <p class="foot-note reveal" data-i18n="programs.note">* سطح‌بندی بر اساس چارچوب مشترک اروپا (CEFR) است. قبل از شروع، یک آزمون سطح‌سنجی کوتاه می‌گیریم تا کلاس دقیقاً در سطحِ خودت باشد.</p>
     </div>
   </section>
 
-  <!-- ═══════════ نقل‌قول ═══════════ -->
-  <section id="quote">
+  <!-- ═══════════ نقل‌قول · صحنه‌ی تاریک ═══════════ -->
+  <section id="quote" class="night quote-scene">
+    <div class="quote-bg" aria-hidden="true">
+      <img src="assets/img/photos/quote.jpg" alt="" loading="lazy">
+      <span class="quote-veil"></span>
+    </div>
     <div class="container reveal">
       <blockquote class="big-quote">
-        <p><span data-i18n="quote.t1">زبان را حفظ نکنید؛ با آن</span> <span class="circled"><span data-i18n="quote.t2">زندگی</span><svg viewBox="0 0 200 70" aria-hidden="true" preserveAspectRatio="none"><path id="circlePath" d="M100 8 C 155 8, 190 22, 189 36 C 188 55, 145 64, 97 63 C 50 62, 10 54, 11 35 C 12 19, 55 9, 108 9" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"/></svg></span> <span data-i18n="quote.t3">کنید.</span></p>
+        <p class="split-words" id="quoteLine"><span data-i18n="quote.t1">زبان را حفظ نکنید؛ با آن</span> <span class="circled"><span data-i18n="quote.t2">زندگی</span><svg viewBox="0 0 200 70" aria-hidden="true" preserveAspectRatio="none"><path id="circlePath" d="M100 8 C 155 8, 190 22, 189 36 C 188 55, 145 64, 97 63 C 50 62, 10 54, 11 35 C 12 19, 55 9, 108 9" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"/></svg></span> <span data-i18n="quote.t3">کنید.</span></p>
         <cite data-i18n="quote.cite">— رامین جلادت</cite>
       </blockquote>
     </div>
   </section>
 
   <!-- ═══════════ فصل ۰۵ · حرف‌های شاگردها ═══════════ -->
-  <section id="voices">
+  <section id="voices" class="paper">
+    <span class="ghost-word" data-gx="3" aria-hidden="true" dir="ltr">VOICES</span>
     <div class="container">
       <header class="chapter reveal">
         <span class="chapter-no" data-i18n="voices.num">فصل ۰۵</span>
@@ -418,7 +485,7 @@
   </section>
 
   <!-- ═══════════ فصل ۰۶ · پرسش‌های پرتکرار ═══════════ -->
-  <section id="faq">
+  <section id="faq" class="paper soft">
     <div class="container">
       <header class="chapter reveal">
         <span class="chapter-no" data-i18n="faq.num">فصل ۰۶</span>
@@ -478,7 +545,8 @@
   </section>
 
   <!-- ═══════════ فصل ۰۷ · تماس ═══════════ -->
-  <section id="contact">
+  <section id="contact" class="night">
+    <div class="contact-lines-bg" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span></div>
     <div class="container">
       <header class="chapter reveal">
         <span class="chapter-no" data-i18n="contact.num">فصل ۰۷</span>
@@ -489,7 +557,7 @@
 
       <div class="contact-grid">
         <div class="reveal">
-          <h2 class="contact-title" data-i18n="contact.title">بیایید صحبت کنیم.</h2>
+          <h2 class="contact-title split-words" data-i18n="contact.title">بیایید صحبت کنیم.</h2>
           <p class="contact-desc" data-i18n="contact.desc">برای هماهنگی کلاس، مشاوره‌ی سطح‌سنجی یا هر همکاری آموزشی، پیام بدهید؛ معمولاً همان روز یا صبح روز بعد پاسخ می‌دهم.</p>
           <div class="contact-lines">
             <a class="contact-item" href="mailto:ramin.jelladat@gmail.com">
@@ -526,7 +594,7 @@
   </section>
 </main>
 
-<footer>
+<footer class="night">
   <div class="container footer-in">
     <div class="footer-brand">
       <span class="brand-mark sm" data-i18n="brand">ر.ج</span>

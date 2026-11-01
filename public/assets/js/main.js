@@ -1,6 +1,7 @@
 /* ═══════════════════════════════════════════════════════════
-   رامین جلادت — دفتر زبان
+   رامین جلادت — دفتر زبان · نسخه‌ی سینمایی
    جاوااسکریپت دست‌نویس؛ بدون هیچ کتابخانه‌ای
+   پرده‌ی ورود، نشانگر دوحلقه‌ای، واژه‌های شبح، عکس شناور…
    ═══════════════════════════════════════════════════════════ */
 (function () {
   'use strict';
@@ -8,6 +9,8 @@
   var $ = function (s, c) { return (c || document).querySelector(s); };
   var $$ = function (s, c) { return Array.prototype.slice.call((c || document).querySelectorAll(s)); };
   var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var finePointer = window.matchMedia('(pointer: fine)').matches;
+  var clamp = function (v, a, b) { return Math.max(a, Math.min(b, v)); };
 
   /* ═══ دیکشنری دوزبانه ═══ */
   var I18N = {
@@ -17,6 +20,7 @@
       skip: 'پرش به محتوای اصلی',
       brand: 'ر.ج', fullname: 'رامین جلادت',
       nav: { about: 'درباره', path: 'مسیر حرفه‌ای', skills: 'تخصص‌ها', programs: 'برنامه‌ها', voices: 'حرف‌های شاگردها', faq: 'پرسش‌ها', contact: 'تماس' },
+      loader: { sub: 'دپارتمانت زبان انگلیسی · مجموعه مدارس سلام' },
       hero: {
         kicker: 'دپارتمانت زبان انگلیسی · مجموعه مدارس سلام',
         name1: 'رامین', name2: 'جلادت',
@@ -28,12 +32,15 @@
         note: 'هر روز، فقط یک واژه — قولِ معلم.',
         scroll: 'پایین‌تر، ادامه‌ی دفتر'
       },
-      stats: { s1: 'سال تجربه مدیریت و تدریس', s2: 'سطح تدریس، از مبتدی تا پیشرفته', s3: 'زبان‌آموز در این مسیر' },
+      stats: { s1: 'سال تجربه مدیریت و تدریس', s2: 'سطح تدریس، از مبتدی تا پیشرفته', s3: 'زبان‌آموز در این مسیر', s4: 'برنامه‌ی آموزشی، از کودک تا مربیگری' },
       about: {
         num: 'فصل ۰۱', label: 'درباره‌ام',
         heading: 'زبان برای من درس نیست؛ راهِ حرف زدن با دنیاست.',
         p1: 'من رامین جلادت هستم؛ معلم زبان انگلیسی و مدیر دپارتمانت زبان مجموعه مدارس سلام. سال‌هاست در این مجموعه، کنار همکاران و زبان‌آموزان، ساختاری ساخته‌ایم که یادگیری زبان را از پایه‌های اول تا دوره بزرگسالان، پیوسته و هدفمند پیش می‌برد.',
-        p2: 'باور دارم کلاس زبان خوب جایی است که زبان‌آموز جرئت می‌کند حرف بزند، اشتباه کند و دوباره امتحان کند. نقش من همین است: ساختن و نگه‌داشتن این فضا — برای زبان‌آموزان و برای معلمانی که با آن‌ها کار می‌کنم.'
+        p2: 'باور دارم کلاس زبان خوب جایی است که زبان‌آموز جرئت می‌کند حرف بزند، اشتباه کند و دوباره امتحان کند. نقش من همین است: ساختن و نگه‌داشتن این فضا — برای زبان‌آموزان و برای معلمانی که با آن‌ها کار می‌کنم.',
+        note: 'کلاس، جایی است که اشتباه کردن مجاز است.',
+        capT: 'اتاق درس، ساعت طلایی',
+        capD: 'جایی که هر «Hello» یک شروع است'
       },
       path: {
         num: 'فصل ۰۲', label: 'مسیر حرفه‌ای',
@@ -98,6 +105,7 @@
       skip: 'Skip to main content',
       brand: 'RJ', fullname: 'Ramin Jelladat',
       nav: { about: 'About', path: 'Career', skills: 'Expertise', programs: 'Programmes', voices: 'Student Voices', faq: 'FAQ', contact: 'Contact' },
+      loader: { sub: 'English Language Department · Salam Schools' },
       hero: {
         kicker: 'English Language Department · Salam Schools',
         name1: 'Ramin', name2: 'Jelladat',
@@ -109,12 +117,15 @@
         note: 'One word a day — teacher\u2019s promise.',
         scroll: 'Scroll — the notebook continues'
       },
-      stats: { s1: 'Years of leadership & teaching', s2: 'Levels taught, beginner to advanced', s3: 'Learners along the way' },
+      stats: { s1: 'Years of leadership & teaching', s2: 'Levels taught, beginner to advanced', s3: 'Learners along the way', s4: 'Programmes, from kids to teacher training' },
       about: {
         num: 'Ch. 01', label: 'About Me',
         heading: 'Language was never just a subject to me — it is a way of talking to the world.',
         p1: 'I am Ramin Jelladat — English teacher and Head of the Language Department at Salam Schools. Over the years, together with colleagues and learners, we have built a system where English learning flows continuously from the early grades all the way to adult programmes.',
-        p2: 'I believe a good language class is a place where students dare to speak, make mistakes and try again. My role is exactly that: to build — and protect — this space, for learners and for the teachers I work with.'
+        p2: 'I believe a good language class is a place where students dare to speak, make mistakes and try again. My role is exactly that: to build — and protect — this space, for learners and for the teachers I work with.',
+        note: 'A classroom is where mistakes are allowed.',
+        capT: 'The golden-hour classroom',
+        capD: 'Where every \u201CHello\u201D is a beginning'
       },
       path: {
         num: 'Ch. 02', label: 'Career Path',
@@ -206,12 +217,83 @@
     return k.split('.').reduce(function (o, x) { return o == null ? o : o[x]; }, I18N[lang]);
   };
 
+  /* ═══════════════════════════════════════════
+     موتور واژه‌بندی — حرف برای لاتین، واژه برای فارسی
+     ═══════════════════════════════════════════ */
+  function splitElement(el, mode) {
+    var counter = { n: 0 };
+    function wrapText(node) {
+      var frag = document.createDocumentFragment();
+      var txt = node.textContent;
+      if (mode === 'chars') {
+        /* واژه‌ها را در پوسته‌ی بی‌شکست می‌پیچیم تا وسط کلمه نشکند */
+        txt.split(/(\s+)/).forEach(function (part) {
+          if (!part) return;
+          if (/^\s+$/.test(part)) { frag.appendChild(document.createTextNode(' ')); return; }
+          var word = document.createElement('span');
+          word.style.cssText = 'white-space:nowrap;display:inline-block';
+          for (var i = 0; i < part.length; i++) {
+            var s = document.createElement('span');
+            s.className = 'ch';
+            s.style.setProperty('--i', counter.n++);
+            s.textContent = part[i];
+            word.appendChild(s);
+          }
+          frag.appendChild(word);
+        });
+      } else {
+        var parts = txt.split(/(\s+)/);
+        parts.forEach(function (p) {
+          if (!p) return;
+          if (/^\s+$/.test(p)) { frag.appendChild(document.createTextNode(' ')); return; }
+          var s = document.createElement('span');
+          s.className = 'ch';
+          s.style.setProperty('--i', counter.n++);
+          s.textContent = p;
+          frag.appendChild(s);
+        });
+      }
+      node.parentNode.replaceChild(frag, node);
+    }
+    function walk(node) {
+      Array.prototype.slice.call(node.childNodes).forEach(function (n) {
+        if (n.nodeType === 3) { if (n.textContent.trim()) wrapText(n); }
+        else if (n.nodeType === 1 && n.tagName.toLowerCase() !== 'svg') walk(n);
+      });
+    }
+    walk(el);
+    el.dataset.split = mode;
+  }
+  function unsplitElement(el) {
+    $$('.ch', el).forEach(function (s) {
+      s.parentNode.replaceChild(document.createTextNode(s.textContent), s);
+    });
+    el.normalize();
+    delete el.dataset.split;
+  }
+  function splitAll() {
+    /* حروف فارسی/عربی به هم می‌چسبند؛ برای آن‌ها واژه‌بندی می‌کنیم نه حرف‌بندی */
+    var arabicLetters = /[\u0600-\u06FF]/;
+    var digits = /[\u06F0-\u06F9\u0660-\u0669\s\d]/g;
+    $$('#kickerEn').forEach(function (el) { if (el.dataset.split !== 'chars') splitElement(el, 'chars'); });
+    $$('.split-chars').forEach(function (el) {
+      if (el.dataset.split) return;
+      var mode = arabicLetters.test(el.textContent.replace(digits, '')) ? 'words' : 'chars';
+      splitElement(el, mode);
+    });
+    $$('.split-words').forEach(function (el) { if (el.dataset.split !== 'words') splitElement(el, 'words'); });
+  }
+  function reSplit() {
+    $$('#kickerEn, .split-chars, .split-words').forEach(unsplitElement);
+    splitAll();
+  }
+
   /* ═══ مارکی واژه‌ها ═══ */
   function renderMarquee() {
     var track = $('#marqueeTrack');
     if (!track) return;
     var html = I18N.fa.marquee.map(function (w) {
-      return '<span class="mq"><span dir="ltr">' + w[0] + '</span><i>' + w[1] + '</i></span>';
+      return '<span class="mq"><span>' + w[0] + '</span><i>' + w[1] + '</i></span>';
     }).join('');
     track.innerHTML = html + html; /* دو نسخه برای حلقه‌ی بی‌درز */
   }
@@ -329,6 +411,7 @@
       $$('.lang-switch button').forEach(function (b) { b.classList.toggle('on', b.dataset.lang === lang); });
       showWord(wordIdx);
       startTyper();
+      reSplit();
       if (currentSec) setActiveNav(currentSec);
       try { localStorage.setItem('rj-lang', lang); } catch (e) {}
     };
@@ -371,15 +454,75 @@
     });
   });
 
-  /* ═══ اسکرول: نوار پیشرفت + هدر ═══ */
+  /* ═══ نشانگر دوحلقه‌ای ═══ */
+  (function initCursor() {
+    if (!finePointer || reduceMotion) return;
+    var dot = $('#cursorDot'), ring = $('#cursorRing');
+    var x = -100, y = -100, rx = -100, ry = -100, seen = false;
+    document.addEventListener('mousemove', function (e) {
+      x = e.clientX; y = e.clientY;
+      if (!seen) { seen = true; rx = x; ry = y; document.documentElement.classList.add('has-cursor'); }
+      dot.style.transform = 'translate3d(' + (x - 3) + 'px,' + (y - 3) + 'px,0)';
+    }, { passive: true });
+    document.addEventListener('mouseleave', function () { document.documentElement.classList.remove('has-cursor'); seen = false; });
+    (function loop() {
+      rx += (x - rx) * 0.16; ry += (y - ry) * 0.16;
+      var half = ring.classList.contains('grow') ? 32 : 19;
+      ring.style.transform = 'translate3d(' + (rx - half) + 'px,' + (ry - half) + 'px,0)';
+      requestAnimationFrame(loop);
+    })();
+    var HOT = 'a,button,input,textarea,select,label,.deck,[role="button"]';
+    document.addEventListener('mouseover', function (e) {
+      if (e.target.closest(HOT)) ring.classList.add('grow');
+    }, { passive: true });
+    document.addEventListener('mouseout', function (e) {
+      if (e.target.closest(HOT)) ring.classList.remove('grow');
+    }, { passive: true });
+  })();
+
+  /* ═══ اسکرول: پیشرفت + هدر + هیرو + خط زمان + شبح‌ها ═══ */
   var progressEl = $('#progress'), headerEl = $('#siteHeader');
-  function onScroll() {
+  var heroEl = $('#hero'), heroSlot = $('.hero-slot'), heroPhoto = $('#heroPhoto');
+  var timelineEl = $('#timeline'), tThread = $('#tThread');
+  var ghosts = $$('.ghost-word').map(function (w) { return { el: w, sec: w.closest('section'), gx: parseFloat(w.dataset.gx || '3') }; });
+  var ticking = false;
+
+  function onFrame() {
+    ticking = false;
     var h = document.documentElement;
     var max = h.scrollHeight - h.clientHeight;
     progressEl.style.transform = 'scaleX(' + (max > 0 ? h.scrollTop / max : 0) + ')';
     headerEl.classList.toggle('scrolled', h.scrollTop > 24);
+
+    if (!reduceMotion && heroSlot && heroEl) {
+      var coverLen = Math.max(0, heroSlot.offsetHeight - window.innerHeight);
+      var p = coverLen > 0 ? clamp(h.scrollTop / coverLen, 0, 1) : 0;
+      if (h.scrollTop < heroSlot.offsetHeight * 1.2) {
+        heroEl.style.setProperty('--p', p.toFixed(4));
+        if (heroPhoto) heroPhoto.style.transform = 'translateY(' + (-p * 9).toFixed(3) + '%)';
+      }
+    }
+
+    if (!reduceMotion && timelineEl && tThread) {
+      var r = timelineEl.getBoundingClientRect();
+      var tp = clamp((window.innerHeight * 0.72 - r.top) / r.height, 0, 1);
+      tThread.style.setProperty('--tp', tp.toFixed(4));
+    }
+
+    if (!reduceMotion) {
+      var vh = window.innerHeight;
+      ghosts.forEach(function (g) {
+        if (!g.sec) return;
+        var r2 = g.sec.getBoundingClientRect();
+        if (r2.bottom < -80 || r2.top > vh + 80) return;
+        var c = clamp(((r2.top + r2.height / 2) - vh / 2) / vh, -1, 1);
+        g.el.style.setProperty('--gxp', (c * g.gx).toFixed(3));
+      });
+    }
   }
+  function onScroll() { if (!ticking) { ticking = true; requestAnimationFrame(onFrame); } }
   window.addEventListener('scroll', onScroll, { passive: true });
+  window.addEventListener('resize', onScroll);
   onScroll();
 
   /* ═══ لینک فعال ناوبری ═══ */
@@ -402,6 +545,14 @@
     });
   }, { threshold: 0.12 });
   $$('.reveal').forEach(function (el) { revealIO.observe(el); });
+
+  /* ═══ واژه‌ها/حروف با blur-up ═══ */
+  var splitIO = new IntersectionObserver(function (es) {
+    es.forEach(function (e) {
+      if (e.isIntersecting) { e.target.classList.add('on'); splitIO.unobserve(e.target); }
+    });
+  }, { threshold: 0.35 });
+  $$('.split-chars, .split-words').forEach(function (el) { splitIO.observe(el); });
 
   /* ═══ دایره‌ی قرمز نقل‌قول ═══ */
   var quoteIO = new IntersectionObserver(function (es) {
@@ -427,6 +578,44 @@
     }, { threshold: 0.35 });
     statIO.observe(statsEl);
   }
+
+  /* ═══ عکس شناورِ برنامه‌ها ═══ */
+  (function initFloatPhoto() {
+    var fp = $('#floatPhoto'), img = $('#floatImg'), cap = $('#floatCap');
+    var list = $('#progList');
+    if (!fp || !list || !finePointer || reduceMotion) return;
+    var tx = 0, ty = 0, cx = 0, cy = 0, s = 0.8, ts = 0.8, active = false, raf = null;
+    function loop() {
+      cx += (tx - cx) * 0.14; cy += (ty - cy) * 0.14; s += (ts - s) * 0.12;
+      fp.style.transform = 'translate3d(' + cx + 'px,' + cy + 'px,0) rotate(6deg) scale(' + s.toFixed(3) + ')';
+      if (active || Math.abs(tx - cx) > 0.5 || Math.abs(ty - cy) > 0.5 || Math.abs(ts - s) > 0.005) {
+        raf = requestAnimationFrame(loop);
+      } else { raf = null; }
+    }
+    function kick() { if (!raf) raf = requestAnimationFrame(loop); }
+    $$('.p-row', list).forEach(function (row) {
+      row.addEventListener('mouseenter', function () {
+        img.src = row.dataset.photo;
+        var n = row.querySelector('.p-name');
+        cap.textContent = n ? n.textContent.replace(/\s+/g, ' ').trim() : '';
+        ts = 1; active = true;
+        fp.classList.add('show');
+        kick();
+      });
+    });
+    list.addEventListener('mousemove', function (e) {
+      var w = 236, hgt = 315;
+      tx = clamp(e.clientX - w / 2, 8, window.innerWidth - w - 8);
+      ty = clamp(e.clientY - hgt / 2, 8, window.innerHeight - hgt - 8);
+      if (!cx && !cy) { cx = tx; cy = ty; }
+      kick();
+    }, { passive: true });
+    list.addEventListener('mouseleave', function () {
+      active = false; ts = 0.8;
+      fp.classList.remove('show');
+      kick();
+    });
+  })();
 
   /* ═══ آکاردئون (تخصص‌ها + پرسش‌ها) ═══ */
   function initAccordion(rootId, keepOpen) {
@@ -504,13 +693,49 @@
     e.target.reset();
   });
 
-  /* ═══ بازگشت به بالا + سال فوتر ═══ */
+  /* ═══ بازگشت به بالا ═══ */
   $('#toTop').addEventListener('click', function () {
     window.scrollTo({ top: 0, behavior: reduceMotion ? 'auto' : 'smooth' });
   });
 
+  /* ═══ پرده‌ی ورود ═══ */
+  (function initLoader() {
+    var loader = $('#loader'), bar = $('#loaderBar'), pct = $('#loaderPct');
+    var val = 0, target = 12, loaded = false, t0 = performance.now();
+    document.body.classList.add('lock');
+
+    function finish() {
+      loader.classList.add('done');
+      document.body.classList.remove('lock');
+      document.body.classList.add('ready');
+      setTimeout(function () { loader.style.display = 'none'; }, 1300);
+      onScroll();
+    }
+    if (reduceMotion) {
+      bar.style.transform = 'scaleX(1)'; pct.textContent = '100%';
+      finish(); return;
+    }
+    var DUR = 1500;
+    (function step(now) {
+      if (loaded) target = 100;
+      else {
+        var el = now - t0;
+        target = Math.min(90, 100 * (1 - Math.pow(1 - Math.min(1, el / DUR), 3)) * 0.9);
+      }
+      val += (target - val) * 0.09;
+      if (loaded && val > 99.4) val = 100;
+      bar.style.transform = 'scaleX(' + (val / 100).toFixed(4) + ')';
+      pct.textContent = Math.round(val) + '%';
+      if (val >= 100) { finish(); return; }
+      requestAnimationFrame(step);
+    })(t0);
+    window.addEventListener('load', function () { loaded = true; });
+    setTimeout(function () { loaded = true; }, 3200); /* بیمه: منتظر منابع بی‌جواب نمی‌مانیم */
+  })();
+
   /* ═══ شروع ═══ */
   renderMarquee();
   applyLang(false);
+  splitAll();
   initDeck();
 })();
