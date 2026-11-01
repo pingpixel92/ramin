@@ -1,0 +1,14 @@
+{
+  "name": "رامین جلادت — دپارتمانت زبان مجموعه مدارس سلام",
+  "short_name": "رامین جلادت",
+  "description": "وب‌سایت شخصی رامین جلادت؛ معلم زبان انگلیسی و مدیر دپارتمانت زبان مجموعه مدارس سلام.",
+  "start_url": "/",
+  "display": "browser",
+  "dir": "rtl",
+  "lang": "fa",
+  "background_color": "#F4EEE1",
+  "theme_color": "#B23A1E",
+  "icons": [
+    { "src": "assets/img/favicon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" }
+  ]
+}
