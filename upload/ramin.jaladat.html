@@ -1,0 +1,867 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>رامین جلادت</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..700&family=Vazirmatn:wght@100..900&display=swap" rel="stylesheet">
+<style>
+  /* ---------- متغیرهای تم ---------- */
+  :root{
+    --bg:#F6F1E7; --card:#FCFAF3; --ink:#221B13; --muted:#7A6E5B; --line:#DCD2BE;
+    --accent:#A93E26; --accent-ink:#F6F1E7;
+    --header-bg:rgba(246,241,231,.86);
+    --font-display:'Fraunces',Georgia,serif;
+    --font-body:'Archivo',Helvetica,Arial,sans-serif;
+  }
+  html[data-theme="dark"]{
+    --bg:#161310; --card:#1E1A15; --ink:#EDE4D3; --muted:#9C8F7B; --line:#342C22;
+    --accent:#D96C47; --accent-ink:#1B120B;
+    --header-bg:rgba(22,19,16,.82);
+  }
+  html[lang="fa"]{ --font-display:'Vazirmatn','Fraunces',sans-serif; --font-body:'Vazirmatn',sans-serif; }
+
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth;scroll-padding-top:96px}
+  body{
+    background:var(--bg);color:var(--ink);
+    font-family:var(--font-body);font-size:16px;line-height:1.75;
+    -webkit-font-smoothing:antialiased;overflow-x:hidden;
+  }
+  ::selection{background:var(--accent);color:var(--accent-ink)}
+  :focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+  ::-webkit-scrollbar{width:10px}
+  ::-webkit-scrollbar-track{background:var(--bg)}
+  ::-webkit-scrollbar-thumb{background:var(--line);border-radius:8px}
+  ::-webkit-scrollbar-thumb:hover{background:var(--muted)}
+
+  /* گذار نرم رنگ‌ها هنگام تعویض تم */
+  body,.site-header,.mobile-nav,.skill,.skill-head,.btn,input,textarea,
+  .contact-item,.stat,.seal,footer,.kicker,.vline,.t-item,.icon-btn,.lang-switch,.lang-switch button,.toast{
+    transition:background-color .35s ease,color .35s ease,border-color .35s ease;
+  }
+
+  /* بافت کاغذی بسیار ظریف روی کل صفحه */
+  .grain{
+    position:fixed;inset:0;z-index:2000;pointer-events:none;opacity:.05;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='0.55'/%3E%3C/svg%3E");
+  }
+
+  .container{max-width:1160px;margin-inline:auto;padding-inline:clamp(1.2rem,4vw,2.4rem)}
+  section{padding-block:clamp(4.5rem,10vw,7.5rem)}
+  #hero{padding-block:0}
+
+  /* ---------- نوار پیشرفت اسکرول ---------- */
+  .progress{
+    position:fixed;top:0;inset-inline-start:0;width:100%;height:2px;z-index:1500;
+    background:var(--accent);transform:scaleX(0);transform-origin:left;
+  }
+  html[dir="rtl"] .progress{transform-origin:right}
+
+  /* ---------- هدر ---------- */
+  .site-header{
+    position:fixed;top:0;inset-inline:0;z-index:1000;
+    border-bottom:1px solid transparent;
+  }
+  .site-header.scrolled{
+    background:var(--header-bg);
+    -webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);
+    border-bottom-color:var(--line);
+  }
+  .header-inner{
+    max-width:1160px;margin-inline:auto;
+    display:flex;align-items:center;justify-content:space-between;gap:1rem;
+    padding:.85rem clamp(1.2rem,4vw,2.4rem);
+  }
+  .brand{display:flex;align-items:center;gap:.7rem;text-decoration:none;color:var(--ink)}
+  .brand-mark{
+    display:grid;place-items:center;width:38px;height:38px;border-radius:50%;
+    background:var(--accent);color:var(--accent-ink);
+    font-family:var(--font-display);font-weight:700;font-size:.85rem;line-height:1;
+    transition:transform .3s ease;
+  }
+  .brand:hover .brand-mark{transform:rotate(-8deg) scale(1.06)}
+  .brand-mark.sm{width:30px;height:30px;font-size:.7rem}
+  .brand-name{font-family:var(--font-display);font-weight:700;font-size:1rem}
+
+  .main-nav{display:flex;gap:1.8rem}
+  .main-nav a{
+    position:relative;color:var(--muted);text-decoration:none;
+    font-size:.92rem;font-weight:600;padding-block:.3rem;transition:color .25s;
+  }
+  .main-nav a::after{
+    content:'';position:absolute;bottom:0;inset-inline-start:0;width:100%;height:2px;
+    background:var(--accent);transform:scaleX(0);transform-origin:center;transition:transform .3s ease;
+  }
+  .main-nav a:hover{color:var(--ink)}
+  .main-nav a.active{color:var(--ink)}
+  .main-nav a.active::after,.main-nav a:hover::after{transform:scaleX(1)}
+  html[lang="en"] .main-nav a{text-transform:uppercase;font-size:.76rem;letter-spacing:.09em}
+
+  .controls{display:flex;align-items:center;gap:.6rem}
+  .lang-switch{display:flex;gap:2px;border:1px solid var(--line);border-radius:999px;padding:3px}
+  .lang-switch button{
+    border:0;background:transparent;color:var(--muted);cursor:pointer;
+    font-family:var(--font-body);font-weight:700;font-size:.8rem;
+    padding:.3rem .78rem;border-radius:999px;
+  }
+  .lang-switch button.on{background:var(--ink);color:var(--bg)}
+  .icon-btn{
+    position:relative;display:grid;place-items:center;width:38px;height:38px;
+    border-radius:50%;border:1px solid var(--line);background:transparent;
+    color:var(--ink);cursor:pointer;
+  }
+  .icon-btn:hover{border-color:var(--accent);color:var(--accent)}
+  .icon-btn svg{width:18px;height:18px;grid-area:1/1;transition:opacity .35s ease,transform .45s ease}
+  #themeToggle .moon{opacity:0;transform:rotate(-90deg) scale(.5)}
+  html[data-theme="dark"] #themeToggle .sun{opacity:0;transform:rotate(90deg) scale(.5)}
+  html[data-theme="dark"] #themeToggle .moon{opacity:1;transform:none}
+  .menu-toggle{display:none}
+  .menu-toggle .ic-close{display:none}
+  .menu-toggle.open .ic-close{display:block}
+  .menu-toggle.open .ic-menu{display:none}
+
+  .mobile-nav{display:none}
+  @media(max-width:860px){
+    .main-nav{display:none}
+    .menu-toggle{display:grid}
+    .mobile-nav.open{
+      display:flex;flex-direction:column;
+      padding:.4rem 1.4rem 1rem;border-bottom:1px solid var(--line);
+      background:var(--header-bg);
+      -webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);
+    }
+    .mobile-nav a{
+      padding:.85rem .1rem;color:var(--ink);text-decoration:none;font-weight:600;
+      border-bottom:1px solid var(--line);
+    }
+    .mobile-nav a:last-child{border-bottom:0}
+  }
+  @media(min-width:861px){.mobile-nav{display:none!important}}
+
+  /* ---------- هیرو ---------- */
+  #hero{min-height:100svh;display:flex;flex-direction:column;justify-content:center;padding-top:6.5rem}
+  .hero-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:2rem;align-items:center;width:100%}
+  .kicker{
+    display:flex;align-items:center;gap:.8rem;color:var(--accent);
+    font-weight:700;font-size:.95rem;margin-bottom:1.4rem;
+  }
+  .kicker::before{content:'';width:36px;height:2px;background:var(--accent);flex-shrink:0}
+  .hero-name{
+    font-family:var(--font-display);font-weight:800;
+    font-size:clamp(3.1rem,8.5vw,6rem);line-height:1.08;letter-spacing:-.01em;
+  }
+  html[lang="en"] .hero-name{font-weight:600}
+  html[lang="en"] .hero-name .accent{font-style:italic}
+  .hero-name .accent{color:var(--accent)}
+  .hero-role{min-height:1.7em;margin-top:1.1rem;font-size:clamp(1.2rem,2.6vw,1.6rem);color:var(--muted);font-weight:500}
+  html[lang="en"] .hero-role{font-family:var(--font-display);font-style:italic}
+  .caret{
+    display:inline-block;width:2px;height:1.05em;background:var(--accent);
+    margin-inline-start:5px;vertical-align:-.14em;animation:blink 1s steps(1) infinite;
+  }
+  @keyframes blink{50%{opacity:0}}
+  .hero-desc{margin-top:1.4rem;max-width:54ch;color:var(--muted);font-size:1.05rem}
+  .hero-ctas{display:flex;flex-wrap:wrap;gap:1rem;margin-top:2.2rem}
+
+  .btn{
+    display:inline-flex;align-items:center;gap:.6rem;
+    padding:.85rem 1.7rem;border:1px solid transparent;border-radius:2px;
+    font-family:var(--font-body);font-weight:700;font-size:.95rem;
+    text-decoration:none;cursor:pointer;
+    transition:transform .25s ease,background-color .25s,color .25s,border-color .25s;
+  }
+  .btn svg{width:17px;height:17px}
+  html[dir="rtl"] .btn svg{transform:scaleX(-1)}
+  .btn-solid{background:var(--ink);color:var(--bg)}
+  .btn-solid:hover{background:var(--accent);color:var(--accent-ink);transform:translateY(-2px)}
+  .btn-ghost{border-color:var(--line);color:var(--ink)}
+  .btn-ghost:hover{border-color:var(--accent);color:var(--accent);transform:translateY(-2px)}
+  html[lang="en"] .btn{text-transform:uppercase;letter-spacing:.06em;font-size:.8rem}
+
+  /* مهر چرخان */
+  .hero-seal{display:flex;justify-content:center;color:var(--accent)}
+  .seal{width:min(330px,78vw);height:auto;overflow:visible}
+  .seal .ring-outer{opacity:.85}
+  .seal .ring-inner{opacity:.45}
+  .seal-rotor{animation:spin 42s linear infinite;transform-box:fill-box;transform-origin:center}
+  @keyframes spin{to{transform:rotate(360deg)}}
+  .seal-text{
+    font-family:'Archivo',sans-serif;font-size:12.5px;letter-spacing:2.6px;
+    fill:currentColor;opacity:.8;
+  }
+  .seal-mono{font-family:'Fraunces',serif;font-size:46px;font-weight:600;fill:currentColor}
+
+  .scroll-hint{
+    display:flex;align-items:center;gap:.95rem;color:var(--muted);
+    font-size:.85rem;margin-top:clamp(2.5rem,6vh,4.5rem);
+  }
+  .vline{position:relative;width:1px;height:46px;background:var(--line);overflow:hidden;flex-shrink:0}
+  .vline::after{
+    content:'';position:absolute;inset-inline:0;top:-100%;height:100%;
+    background:var(--accent);animation:drip 2.2s ease-in-out infinite;
+  }
+  @keyframes drip{0%{top:-100%}65%,100%{top:100%}}
+
+  /* ---------- سرصفحه‌ی بخش‌ها ---------- */
+  .sec-head{display:flex;align-items:center;gap:1rem;margin-bottom:2.6rem}
+  .sec-num{font-family:var(--font-display);font-style:italic;color:var(--accent);font-size:1rem}
+  html[lang="fa"] .sec-num{font-style:normal}
+  .sec-label{font-weight:800;font-size:.95rem}
+  html[lang="en"] .sec-label{text-transform:uppercase;letter-spacing:.16em;font-size:.78rem}
+  .sec-line{flex:1;height:1px;background:var(--line)}
+
+  /* ---------- آمار ---------- */
+  .stats{display:grid;grid-template-columns:repeat(3,1fr);border-block:1px solid var(--line)}
+  .stat{position:relative;padding:2.1rem 1rem;text-align:center}
+  .stat + .stat::before{
+    content:'';position:absolute;inset-inline-start:0;top:24%;bottom:24%;
+    width:1px;background:var(--line);
+  }
+  .stat-num{display:block;font-family:var(--font-display);font-weight:700;font-size:clamp(2.2rem,5vw,3.4rem);line-height:1}
+  .stat-num .plus{color:var(--accent)}
+  .stat-label{display:block;margin-top:.65rem;color:var(--muted);font-size:.92rem}
+
+  /* ---------- درباره ---------- */
+  .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(2rem,6vw,5rem);margin-top:3rem}
+  .about-heading{
+    font-family:var(--font-display);font-weight:700;
+    font-size:clamp(1.7rem,3.4vw,2.5rem);line-height:1.4;
+  }
+  .about-texts p{color:var(--muted);margin-bottom:1.15rem}
+  .about-texts p:last-child{margin-bottom:0}
+
+  /* ---------- تایم‌لاین ---------- */
+  .timeline{position:relative;margin-top:.5rem}
+  .timeline::before{
+    content:'';position:absolute;inset-inline-start:0;top:8px;bottom:8px;
+    width:1px;background:var(--line);
+  }
+  .t-item{position:relative;padding-inline-start:clamp(2.2rem,5vw,3.4rem);padding-bottom:2.7rem}
+  .t-item:last-child{padding-bottom:0}
+  .t-item::before{
+    content:'';position:absolute;inset-inline-start:-4px;top:11px;
+    width:9px;height:9px;border-radius:50%;background:var(--accent);
+    box-shadow:0 0 0 5px var(--bg);
+  }
+  .t-year{display:block;font-family:var(--font-display);font-style:italic;color:var(--accent);font-size:1.3rem;font-weight:600;line-height:1.3}
+  html[lang="fa"] .t-year{font-style:normal}
+  .t-title{font-size:1.22rem;font-weight:800;margin-top:.25rem}
+  .t-text{color:var(--muted);max-width:62ch;margin-top:.4rem}
+
+  /* ---------- آکاردئون تخصص‌ها ---------- */
+  .skill{border-top:1px solid var(--line)}
+  .skill:last-child{border-bottom:1px solid var(--line)}
+  .skill-head{
+    width:100%;display:flex;align-items:center;gap:clamp(1rem,3vw,2rem);
+    padding:1.5rem .15rem;background:none;border:0;cursor:pointer;
+    text-align:start;color:var(--ink);font-family:var(--font-body);
+  }
+  .skill-num{
+    font-family:var(--font-display);font-style:italic;color:var(--muted);
+    font-size:1rem;min-width:2.3rem;
+  }
+  html[lang="fa"] .skill-num{font-style:normal}
+  .skill-title{
+    flex:1;font-weight:800;font-size:clamp(1.08rem,2.4vw,1.42rem);
+    transition:color .25s,transform .3s;
+  }
+  .skill:hover .skill-title,.skill.open .skill-title{color:var(--accent)}
+  .skill.open .skill-title{transform:translateX(0)}
+  .skill-icon{
+    display:grid;place-items:center;width:34px;height:34px;flex-shrink:0;
+    border:1px solid var(--line);border-radius:50%;color:var(--muted);
+    transition:transform .4s ease,border-color .25s,color .25s;
+  }
+  .skill.open .skill-icon{transform:rotate(180deg);border-color:var(--accent);color:var(--accent)}
+  .skill-body{display:grid;grid-template-rows:0fr;transition:grid-template-rows .45s cubic-bezier(.3,.7,.3,1)}
+  .skill.open .skill-body{grid-template-rows:1fr}
+  .skill-body-in{overflow:hidden}
+  .skill-body p{
+    color:var(--muted);max-width:62ch;margin-bottom:1.6rem;
+    padding-inline-start:calc(2.3rem + clamp(1rem,3vw,2rem));
+  }
+
+  /* ---------- نقل‌قول ---------- */
+  #quote{padding-block:0}
+  #quote .container{border-block:1px solid var(--line);padding-block:clamp(3.2rem,7vw,5.2rem)}
+  #quote blockquote{
+    font-family:var(--font-display);font-weight:600;text-align:center;
+    font-size:clamp(1.55rem,4.2vw,2.65rem);line-height:1.55;max-width:30ch;margin-inline:auto;
+  }
+  #quote cite{
+    display:block;margin-top:1.5rem;text-align:center;font-style:normal;color:var(--muted);font-size:.95rem;
+  }
+  #quote cite::before{content:'— '}
+
+  /* ---------- تماس ---------- */
+  .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(2.5rem,6vw,5rem);margin-top:.5rem}
+  .contact-title{
+    font-family:var(--font-display);font-weight:700;
+    font-size:clamp(2rem,4.5vw,3rem);line-height:1.25;margin-bottom:1rem;
+  }
+  .contact-desc{color:var(--muted);max-width:46ch}
+  .contact-lines{display:flex;flex-direction:column;gap:1.1rem;margin-top:2.2rem}
+  .contact-item{
+    display:flex;align-items:center;gap:.95rem;width:fit-content;
+    color:var(--ink);text-decoration:none;padding-bottom:.35rem;
+    border-bottom:1px solid transparent;transition:border-color .25s,color .25s;
+  }
+  .contact-item:hover{color:var(--accent);border-color:var(--accent)}
+  .contact-item svg{width:19px;height:19px;color:var(--accent);flex-shrink:0}
+  .c-label{display:block;font-size:.78rem;color:var(--muted)}
+
+  .form{display:flex;flex-direction:column;gap:1.15rem}
+  .field label{display:block;font-size:.85rem;font-weight:700;margin-bottom:.5rem;color:var(--muted)}
+  input,textarea{
+    width:100%;background:var(--card);border:1px solid var(--line);border-radius:2px;
+    color:var(--ink);padding:.9rem 1rem;font-family:var(--font-body);font-size:1rem;
+    transition:border-color .25s,box-shadow .25s,background-color .35s;
+  }
+  input:focus,textarea:focus{
+    outline:none;border-color:var(--accent);
+    box-shadow:0 0 0 3px rgba(169,62,38,.16);
+  }
+  textarea{min-height:132px;resize:vertical}
+
+  /* ---------- فوتر / توست ---------- */
+  footer{border-top:1px solid var(--line);padding-block:1.8rem 2.2rem}
+  .footer-in{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:1rem}
+  .footer-brand{display:flex;align-items:center;gap:.7rem;font-family:var(--font-display);font-weight:700;font-size:.98rem}
+  .footer-copy{color:var(--muted);font-size:.88rem}
+
+  .toast{
+    position:fixed;bottom:1.8rem;left:50%;z-index:2500;
+    transform:translate(-50%,16px);opacity:0;pointer-events:none;
+    background:var(--ink);color:var(--bg);padding:.85rem 1.5rem;border-radius:2px;
+    font-size:.9rem;max-width:min(90vw,480px);text-align:center;
+    transition:opacity .3s ease,transform .3s ease,background-color .35s,color .35s;
+  }
+  .toast.show{opacity:1;transform:translate(-50%,0)}
+
+  /* ---------- نمایش با اسکرول و گذار زبان ---------- */
+  .reveal{opacity:0;transform:translateY(26px);transition:opacity .7s ease,transform .7s cubic-bezier(.2,.7,.2,1)}
+  .reveal.visible{opacity:1;transform:none}
+  main,.site-header,footer{transition:opacity .22s ease,transform .22s ease,background-color .35s,border-color .35s}
+  body.lang-fade main,body.lang-fade .site-header,body.lang-fade footer{opacity:.1;transform:translateY(6px)}
+
+  /* ---------- ریسپانسیو ---------- */
+  @media(max-width:860px){
+    .hero-grid{grid-template-columns:1fr;gap:2.6rem}
+    .hero-seal{order:2}
+    .seal{width:190px}
+    .about-grid,.contact-grid{grid-template-columns:1fr}
+  }
+  @media(max-width:640px){
+    .stats{grid-template-columns:1fr}
+    .stat + .stat::before{top:0;bottom:auto;inset-inline-start:22%;inset-inline-end:22%;width:auto;height:1px}
+    .skill-body p{padding-inline-start:.15rem}
+  }
+</style>
+</head>
+<body>
+
+<div class="progress" id="progress"></div>
+<div class="grain" aria-hidden="true"></div>
+
+<header class="site-header" id="siteHeader">
+  <div class="header-inner">
+    <a href="#hero" class="brand">
+      <span class="brand-mark" data-i18n="brand"></span>
+      <span class="brand-name" data-i18n="fullname"></span>
+    </a>
+    <nav class="main-nav" aria-label="Main">
+      <a href="#about"   data-sec="about"   data-i18n="nav.about"></a>
+      <a href="#path"    data-sec="path"    data-i18n="nav.path"></a>
+      <a href="#skills"  data-sec="skills"  data-i18n="nav.skills"></a>
+      <a href="#contact" data-sec="contact" data-i18n="nav.contact"></a>
+    </nav>
+    <div class="controls">
+      <div class="lang-switch" role="group" aria-label="Language">
+        <button type="button" data-lang="fa">فا</button>
+        <button type="button" data-lang="en">EN</button>
+      </div>
+      <button type="button" class="icon-btn" id="themeToggle" aria-label="Toggle theme">
+        <svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+        <svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z"/></svg>
+      </button>
+      <button type="button" class="icon-btn menu-toggle" id="menuToggle" aria-label="Menu">
+        <svg class="ic-menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+        <svg class="ic-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg>
+      </button>
+    </div>
+  </div>
+  <nav class="mobile-nav" id="mobileNav" aria-label="Mobile">
+    <a href="#about"   data-i18n="nav.about"></a>
+    <a href="#path"    data-i18n="nav.path"></a>
+    <a href="#skills"  data-i18n="nav.skills"></a>
+    <a href="#contact" data-i18n="nav.contact"></a>
+  </nav>
+</header>
+
+<main>
+  <!-- ══════════ هیرو ══════════ -->
+  <section id="hero">
+    <div class="container hero-grid">
+      <div class="hero-text">
+        <p class="kicker reveal" data-i18n="hero.kicker"></p>
+        <h1 class="hero-name reveal">
+          <span data-i18n="hero.name1"></span> <span class="accent" data-i18n="hero.name2"></span>
+        </h1>
+        <p class="hero-role reveal"><span id="typed"></span><span class="caret" aria-hidden="true"></span></p>
+        <p class="hero-desc reveal" data-i18n="hero.desc"></p>
+        <div class="hero-ctas reveal">
+          <a class="btn btn-solid" href="#contact">
+            <span data-i18n="hero.cta1"></span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+          <a class="btn btn-ghost" href="#about"><span data-i18n="hero.cta2"></span></a>
+        </div>
+      </div>
+      <div class="hero-seal reveal">
+        <svg class="seal" viewBox="0 0 220 220" aria-hidden="true">
+          <defs>
+            <path id="sealPath" d="M110,110 m -80,0 a 80,80 0 1,1 160,0 a 80,80 0 1,1 -160,0"/>
+          </defs>
+          <circle class="ring-outer" cx="110" cy="110" r="106" fill="none" stroke="currentColor" stroke-width="1.5"/>
+          <circle class="ring-inner" cx="110" cy="110" r="56" fill="none" stroke="currentColor" stroke-width="1"/>
+          <g class="seal-rotor">
+            <text class="seal-text"><textPath href="#sealPath">ENGLISH LANGUAGE DEPT. • SALAM SCHOOLS • SINCE 2006 • </textPath></text>
+          </g>
+          <text class="seal-mono" x="110" y="126" text-anchor="middle">RJ</text>
+        </svg>
+      </div>
+    </div>
+    <div class="container scroll-hint reveal">
+      <span class="vline" aria-hidden="true"></span>
+      <span data-i18n="hero.scroll"></span>
+    </div>
+  </section>
+
+  <!-- ══════════ درباره ══════════ -->
+  <section id="about">
+    <div class="container">
+      <div class="sec-head reveal">
+        <span class="sec-num" data-i18n="about.num"></span>
+        <span class="sec-label" data-i18n="about.label"></span>
+        <span class="sec-line"></span>
+      </div>
+      <div class="stats reveal" id="stats">
+        <div class="stat"><span class="stat-num" data-idx="0"></span><span class="stat-label"></span></div>
+        <div class="stat"><span class="stat-num" data-idx="1"></span><span class="stat-label"></span></div>
+        <div class="stat"><span class="stat-num" data-idx="2"></span><span class="stat-label"></span></div>
+      </div>
+      <div class="about-grid">
+        <h2 class="about-heading reveal" data-i18n="about.heading"></h2>
+        <div class="about-texts reveal">
+          <p data-i18n="about.p1"></p>
+          <p data-i18n="about.p2"></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════ مسیر حرفه‌ای ══════════ -->
+  <section id="path">
+    <div class="container">
+      <div class="sec-head reveal">
+        <span class="sec-num" data-i18n="path.num"></span>
+        <span class="sec-label" data-i18n="path.label"></span>
+        <span class="sec-line"></span>
+      </div>
+      <div class="timeline" id="timeline"></div>
+    </div>
+  </section>
+
+  <!-- ══════════ تخصص‌ها ══════════ -->
+  <section id="skills">
+    <div class="container">
+      <div class="sec-head reveal">
+        <span class="sec-num" data-i18n="skills.num"></span>
+        <span class="sec-label" data-i18n="skills.label"></span>
+        <span class="sec-line"></span>
+      </div>
+      <div id="skillList"></div>
+    </div>
+  </section>
+
+  <!-- ══════════ نقل‌قول ══════════ -->
+  <section id="quote">
+    <div class="container reveal">
+      <blockquote data-i18n="quote.text"></blockquote>
+      <cite data-i18n="quote.cite"></cite>
+    </div>
+  </section>
+
+  <!-- ══════════ تماس ══════════ -->
+  <section id="contact">
+    <div class="container">
+      <div class="sec-head reveal">
+        <span class="sec-num" data-i18n="contact.num"></span>
+        <span class="sec-label" data-i18n="contact.label"></span>
+        <span class="sec-line"></span>
+      </div>
+      <div class="contact-grid">
+        <div class="reveal">
+          <h2 class="contact-title" data-i18n="contact.title"></h2>
+          <p class="contact-desc" data-i18n="contact.desc"></p>
+          <div class="contact-lines">
+            <a class="contact-item" href="mailto:ramin.jelladat@gmail.com">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="4.5" width="19" height="15" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+              <span><span class="c-label" data-i18n="contact.email"></span><span dir="ltr">ramin.jelladat@gmail.com</span></span>
+            </a>
+            <a class="contact-item" href="https://t.me/RaminJelladat" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2 11 13"/><path d="M22 2 15 22l-4-9-9-4Z"/></svg>
+              <span><span class="c-label" data-i18n="contact.tg"></span><span dir="ltr">@RaminJelladat</span></span>
+            </a>
+          </div>
+        </div>
+        <form class="form reveal" id="contactForm" novalidate>
+          <div class="field">
+            <label for="fName" data-i18n="form.name"></label>
+            <input id="fName" type="text" required data-i18n-ph="form.namePh">
+          </div>
+          <div class="field">
+            <label for="fMsg" data-i18n="form.msg"></label>
+            <textarea id="fMsg" required data-i18n-ph="form.msgPh"></textarea>
+          </div>
+          <button class="btn btn-solid" type="submit">
+            <span data-i18n="form.send"></span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </button>
+        </form>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="container footer-in">
+    <span class="footer-brand">
+      <span class="brand-mark sm" data-i18n="brand"></span>
+      <span data-i18n="fullname"></span>
+    </span>
+    <span class="footer-copy" data-i18n="footer"></span>
+  </div>
+</footer>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script>
+(function(){
+"use strict";
+const $  = (s,c=document)=>c.querySelector(s);
+const $$ = (s,c=document)=>[...c.querySelectorAll(s)];
+
+/* ═══════════ دیکشنری دوزبانه ═══════════ */
+const I18N = {
+  fa:{
+    dir:'rtl', title:'رامین جلادت — دپارتمانت زبان | مجموعه مدارس سلام',
+    brand:'ر.ج', fullname:'رامین جلادت',
+    nav:{about:'درباره', path:'مسیر حرفه‌ای', skills:'تخصص‌ها', contact:'تماس'},
+    hero:{
+      kicker:'دپارتمانت زبان · مجموعه مدارس سلام',
+      name1:'رامین', name2:'جلادت',
+      roles:['مدیر دپارتمانت زبان','معلم زبان انگلیسی','طراح دوره و مربی معلمان'],
+      desc:'سال‌هاست در دپارتمانت زبان مجموعه مدارس سلام، یادگیری انگلیسی را از یک درس خشک به تجربه‌ای زنده تبدیل می‌کنم؛ از کلاس درس تا طراحی برنامه درسی و مربیگری معلمان.',
+      cta1:'هماهنگی کلاس', cta2:'بیشتر بدانید',
+      scroll:'برای ادامه، اسکرول کنید'
+    },
+    stats:[
+      {n:12,   s:'+', label:'سال تجربه مدیریت و تدریس'},
+      {n:9,    s:'',  label:'سطح تدریس، از مبتدی تا پیشرفته'},
+      {n:2000, s:'+', label:'زبان‌آموز در این مسیر'}
+    ],
+    about:{num:'۰۱', label:'درباره من',
+      heading:'زبان، برای من درس نیست؛ مسیر زندگی است.',
+      p1:'من رامین جلادت هستم؛ معلم زبان انگلیسی و مدیر دپارتمانت زبان مجموعه مدارس سلام. سال‌هاست که در این مجموعه، کنار همکاران و زبان‌آموزان، ساختاری ساخته‌ایم که یادگیری زبان را از پایه‌های اول تا دوره بزرگسالان، پیوسته و هدفمند پیش می‌برد.',
+      p2:'باور دارم کلاس زبان خوب جایی است که زبان‌آموز جرئت می‌کند حرف بزند، اشتباه کند و دوباره امتحان کند. نقش من این است که همین فضا را — برای زبان‌آموزان و برای معلمانی که با آن‌ها کار می‌کنم — فراهم کنم و نگه دارم.'
+    },
+    path:{num:'۰۲', label:'مسیر حرفه‌ای', items:[
+      {year:'۱۳۸۵', title:'آغاز تدریس',
+       text:'شروع تدریس انگلیسی در آموزشگاه‌ها و مدارس؛ از همان ابتدا باور داشتم زبان باید در کلاس «استفاده» شود، نه فقط «تدریس».'},
+      {year:'۱۳۹۰', title:'پیوستن به مدارس سلام',
+       text:'همکاری با مجموعه مدارس سلام و آغاز ساخت برنامه یکپارچه زبان انگلیسی برای مقاطع مختلف تحصیلی.'},
+      {year:'۱۳۹۶', title:'مدیریت دپارتمانت زبان',
+       text:'رهبری تیم معلمان، طراحی سرفصل‌ها و آزمون‌های جایگاه‌یابی، و نظارت بر کیفیت آموزش در همه سطوح.'},
+      {year:'امروز', title:'تدریس، رهبری، پرورش مربی',
+       text:'ادامه همین مسیر؛ کنار کلاس‌هایی که هنوز هر هفته تدریس می‌کنم و معلمان تازه‌ای که هر سال به تیم اضافه می‌شوند.'}
+    ]},
+    skills:{num:'۰۳', label:'تخصص‌ها', items:[
+      {title:'مدیریت دپارتمانت زبان',
+       text:'برنامه‌ریزی ترم، چینش سطح‌ها، ارزیابی معلمان و تضمین کیفیت کلاس‌ها؛ از انتخاب کتاب درسی تا تقویم آموزشی سال.'},
+      {title:'تدریس انگلیسی در همه سطوح',
+       text:'از مبتدی مطلق تا پیشرفته؛ با تمرکز بر مکالمه واقعی، واژگان کاربردی و همان اعتمادبه‌نفسی که زبان‌آموز را به حرف زدن می‌رساند.'},
+      {title:'طراحی دوره و محتوا',
+       text:'ساخت سرفصل، آزمون‌های سطح‌سنجی و منابع تکمیلی، متناسب با سن و هدف هر گروه از زبان‌آموزان.'},
+      {title:'کارگاه و مربیگری معلمان',
+       text:'کارگاه‌های روش تدریس، مشاهده کلاس و بازخورد حرفه‌ای؛ چون کیفیت هر کلاس به کیفیت مربی آن است.'}
+    ]},
+    quote:{text:'«زبان را حفظ نکنید؛ با آن زندگی کنید.»', cite:'رامین جلادت'},
+    contact:{num:'۰۴', label:'تماس',
+      title:'بیایید صحبت کنیم',
+      desc:'برای هماهنگی کلاس، مشاوره سطح‌سنجی یا هر همکاری آموزشی، از راه‌های زیر پیام بدهید یا مستقیم بنویسید.',
+      email:'ایمیل', tg:'تلگرام',
+      name:'نام شما', namePh:'مثلاً: سارا محمدی',
+      msg:'پیام شما', msgPh:'سلام آقای جلادت، برای سطح‌سنجی و شروع کلاس می‌خواستم…',
+      send:'ارسال پیام',
+      toast:'برنامه ایمیل برای ارسال پیام باز می‌شود؛ اگر باز نشد، آدرس را مستقیم وارد کنید.'},
+    footer:'© رامین جلادت — دپارتمانت زبان مجموعه مدارس سلام'
+  },
+  en:{
+    dir:'ltr', title:'Ramin Jelladat — Language Department | Salam Schools',
+    brand:'RJ', fullname:'Ramin Jelladat',
+    nav:{about:'About', path:'Career', skills:'Expertise', contact:'Contact'},
+    hero:{
+      kicker:'Language Department · Salam Schools',
+      name1:'Ramin', name2:'Jelladat',
+      roles:['Head of Language Department','English Language Teacher','Curriculum Designer & Teacher Trainer'],
+      desc:'For years, at the Language Department of Salam Schools, I have turned English learning into a living experience — from the classroom to curriculum design and teacher training.',
+      cta1:'Book a Class', cta2:'Learn More',
+      scroll:'Scroll to explore'
+    },
+    stats:[
+      {n:12,   s:'+', label:'Years of teaching & leadership'},
+      {n:9,    s:'',  label:'Levels taught, beginner to advanced'},
+      {n:2000, s:'+', label:'Learners along the way'}
+    ],
+    about:{num:'01', label:'About Me',
+      heading:'For me, language was never just a subject — it is a way of life.',
+      p1:'I am Ramin Jelladat — English teacher and Head of the Language Department at Salam Schools. Together with colleagues and learners, we have built a system where English learning flows continuously from the early grades all the way to adult programmes.',
+      p2:'I believe a good language class is a place where students dare to speak, make mistakes and try again. My role is to create — and protect — that space, both for learners and for the teachers I work with.'
+    },
+    path:{num:'02', label:'Career Path', items:[
+      {year:'2006', title:'Where It Began',
+       text:'Started teaching English at institutes and schools; convinced from day one that language should be used in class, not merely taught.'},
+      {year:'2011', title:'Joining Salam Schools',
+       text:'Joined Salam Schools and began building a unified English programme across grade levels.'},
+      {year:'2017', title:'Head of Language Department',
+       text:'Leading the teaching team, designing syllabi and placement tests, and safeguarding teaching quality at every level.'},
+      {year:'Today', title:'Teaching, Leading, Mentoring',
+       text:'The journey continues — beside the classes I still teach every week and the new teachers who join the team every year.'}
+    ]},
+    skills:{num:'03', label:'Expertise', items:[
+      {title:'Leading the Language Department',
+       text:'Term planning, level placement, teacher evaluation and class quality assurance — from book selection to the academic calendar.'},
+      {title:'Teaching All Levels',
+       text:'From absolute beginners to advanced learners; focused on real conversation, practical vocabulary and the confidence it takes to speak.'},
+      {title:'Curriculum & Content Design',
+       text:'Building syllabi, placement tests and supplementary materials tailored to each group\u2019s age and goals.'},
+      {title:'Workshops & Teacher Training',
+       text:'Method workshops, classroom observation and professional feedback — because every class is only as good as its teacher.'}
+    ]},
+    quote:{text:'\u201CDon\u2019t memorise the language — live it.\u201D', cite:'Ramin Jelladat'},
+    contact:{num:'04', label:'Contact',
+      title:'Let\u2019s Talk',
+      desc:'For class arrangements, placement counselling or any educational collaboration, reach out below or write to me directly.',
+      email:'Email', tg:'Telegram',
+      name:'Your Name', namePh:'e.g. Sara Mohammadi',
+      msg:'Your Message', msgPh:'Hello Mr. Jelladat, I would like to take a placement test and start classes…',
+      send:'Send Message',
+      toast:'Your email app is opening to send the message; if it doesn\u2019t, please use the address directly.'},
+    footer:'© Ramin Jelladat — Language Department, Salam Schools'
+  }
+};
+
+/* ═══════════ وضعیت ═══════════ */
+let lang='fa', theme='light', counted=false, currentSec=null, openSkill=0;
+let typerTimer=null, toastTimer=null;
+try{
+  theme = localStorage.getItem('rj-theme') || 'light';
+  const l = localStorage.getItem('rj-lang'); if(l && I18N[l]) lang = l;
+}catch(e){}
+document.documentElement.dataset.theme = theme;
+
+const faD   = v => String(v).replace(/\d/g, d=>'۰۱۲۳۴۵۶۷۸۹'[+d]);
+const fmtNum= n => lang==='fa' ? faD(n) : Number(n).toLocaleString('en-US');
+const t     = k => k.split('.').reduce((o,x)=>(o==null?o:o[x]), I18N[lang]) ?? '';
+
+/* ═══════════ تایپرایتر عناوین ═══════════ */
+function startTyper(){
+  clearTimeout(typerTimer);
+  const el=$('#typed'); if(!el) return;
+  const roles=I18N[lang].hero.roles;
+  el.textContent='';
+  let ri=0, ci=0, del=false;
+  const tick=()=>{
+    const w=roles[ri];
+    if(!del){
+      ci++; el.textContent=w.slice(0,ci);
+      if(ci===w.length){ del=true; typerTimer=setTimeout(tick,1900); return; }
+      typerTimer=setTimeout(tick,75);
+    }else{
+      ci--; el.textContent=w.slice(0,ci);
+      if(ci===0){ del=false; ri=(ri+1)%roles.length; typerTimer=setTimeout(tick,420); return; }
+      typerTimer=setTimeout(tick,38);
+    }
+  };
+  typerTimer=setTimeout(tick,450);
+}
+
+/* ═══════════ شمارنده‌های آمار ═══════════ */
+const setStat=(el,n,suf)=>{
+  el.innerHTML = fmtNum(n) + (suf ? `<span class="plus">${suf}</span>` : '');
+};
+function runCounters(){
+  $$('.stat-num').forEach((el,i)=>{
+    const s=I18N[lang].stats[i], t0=performance.now(), dur=1300+i*160;
+    const step=now=>{
+      const p=Math.min(1,(now-t0)/dur);
+      setStat(el, Math.round(s.n*(1-Math.pow(1-p,3))), s.s);
+      if(p<1) requestAnimationFrame(step);
+    };
+    requestAnimationFrame(step);
+  });
+  counted=true;
+}
+function renderStats(){
+  $$('.stat-label').forEach((el,i)=>el.textContent=I18N[lang].stats[i].label);
+  $$('.stat-num').forEach((el,i)=>{
+    const s=I18N[lang].stats[i];
+    if(counted) setStat(el,s.n,s.s); else el.textContent=fmtNum(0);
+  });
+}
+
+/* ═══════════ رندر تایم‌لاین و آکاردئون ═══════════ */
+function renderTimeline(){
+  $('#timeline').innerHTML = I18N[lang].path.items.map(it=>`
+    <div class="t-item reveal">
+      <span class="t-year">${it.year}</span>
+      <h3 class="t-title">${it.title}</h3>
+      <p class="t-text">${it.text}</p>
+    </div>`).join('');
+}
+const chev = '<svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>';
+function renderSkills(){
+  $('#skillList').innerHTML = I18N[lang].skills.items.map((s,i)=>{
+    const num = String(i+1).padStart(2,'0');
+    return `
+    <div class="skill ${i===openSkill?'open':''}">
+      <button type="button" class="skill-head" aria-expanded="${i===openSkill}">
+        <span class="skill-num">${lang==='fa'?faD(num):num}</span>
+        <span class="skill-title">${s.title}</span>
+        <span class="skill-icon">${chev}</span>
+      </button>
+      <div class="skill-body"><div class="skill-body-in"><p>${s.text}</p></div></div>
+    </div>`;
+  }).join('');
+}
+ $('#skillList').addEventListener('click',e=>{
+  const head=e.target.closest('.skill-head'); if(!head) return;
+  const item=head.parentElement, wasOpen=item.classList.contains('open');
+  $$('#skillList .skill').forEach(s=>{
+    s.classList.remove('open');
+    s.querySelector('.skill-head').setAttribute('aria-expanded','false');
+  });
+  if(!wasOpen){
+    item.classList.add('open');
+    head.setAttribute('aria-expanded','true');
+    openSkill=$$('#skillList .skill').indexOf(item);
+  }
+});
+
+/* ═══════════ اعمال زبان (با گذار محو) ═══════════ */
+function applyLang(withFade){
+  const run=()=>{
+    const L=I18N[lang];
+    document.documentElement.lang=lang;
+    document.documentElement.dir=L.dir;
+    document.title=L.title;
+    $$('[data-i18n]').forEach(el=>el.textContent=t(el.dataset.i18n));
+    $$('[data-i18n-ph]').forEach(el=>el.placeholder=t(el.dataset.i18nPh));
+    renderStats(); renderTimeline(); renderSkills();
+    $$('.lang-switch button').forEach(b=>b.classList.toggle('on', b.dataset.lang===lang));
+    startTyper(); observeReveals();
+    if(currentSec) setActiveNav(currentSec);
+    try{ localStorage.setItem('rj-lang',lang); }catch(e){}
+  };
+  if(withFade){
+    document.body.classList.add('lang-fade');
+    setTimeout(()=>{
+      run();
+      requestAnimationFrame(()=>document.body.classList.remove('lang-fade'));
+    },220);
+  } else run();
+}
+ $$('.lang-switch button').forEach(b=>b.addEventListener('click',()=>{
+  const l=b.dataset.lang; if(l===lang) return;
+  lang=l; applyLang(true);
+}));
+
+/* ═══════════ تم ═══════════ */
+ $('#themeToggle').addEventListener('click',()=>{
+  theme = theme==='dark' ? 'light' : 'dark';
+  document.documentElement.dataset.theme=theme;
+  try{ localStorage.setItem('rj-theme',theme); }catch(e){}
+});
+
+/* ═══════════ منوی موبایل ═══════════ */
+const menuBtn=$('#menuToggle'), mnav=$('#mobileNav');
+menuBtn.addEventListener('click',()=>{
+  const o=mnav.classList.toggle('open');
+  menuBtn.classList.toggle('open',o);
+});
+ $$('#mobileNav a').forEach(a=>a.addEventListener('click',()=>{
+  mnav.classList.remove('open'); menuBtn.classList.remove('open');
+}));
+
+/* ═══════════ اسکرول: نوار پیشرفت + هدر ═══════════ */
+const progressEl=$('#progress'), headerEl=$('#siteHeader');
+function onScroll(){
+  const h=document.documentElement, max=h.scrollHeight-h.clientHeight;
+  progressEl.style.transform=`scaleX(${max>0 ? h.scrollTop/max : 0})`;
+  headerEl.classList.toggle('scrolled', h.scrollTop>24);
+}
+addEventListener('scroll', onScroll, {passive:true}); onScroll();
+
+/* ═══════════ لینک فعال ناوبری ═══════════ */
+function setActiveNav(id){
+  currentSec=id;
+  $$('.main-nav a').forEach(a=>a.classList.toggle('active', a.dataset.sec===id));
+}
+const secIO=new IntersectionObserver(es=>{
+  es.forEach(e=>{ if(e.isIntersecting) setActiveNav(e.target.id); });
+},{rootMargin:'-35% 0px -60% 0px'});
+['about','path','skills','contact'].forEach(id=>secIO.observe(document.getElementById(id)));
+
+/* ═══════════ نمایش با اسکرول ═══════════ */
+const revealIO=new IntersectionObserver(es=>{
+  es.forEach(e=>{
+    if(e.isIntersecting){ e.target.classList.add('visible'); revealIO.unobserve(e.target); }
+  });
+},{threshold:.12});
+function observeReveals(){
+  $$('.reveal:not(.visible)').forEach(el=>revealIO.observe(el));
+}
+
+/* ═══════════ راه‌اندازی شمارنده‌ها هنگام دیده‌شدن ═══════════ */
+const statIO=new IntersectionObserver(es=>{
+  if(es.some(e=>e.isIntersecting) && !counted){ runCounters(); statIO.disconnect(); }
+},{threshold:.35});
+statIO.observe($('#stats'));
+
+/* ═══════════ فرم تماس → mailto + توست ═══════════ */
+function showToast(msg){
+  const el=$('#toast'); el.textContent=msg; el.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer=setTimeout(()=>el.classList.remove('show'),3800);
+}
+ $('#contactForm').addEventListener('submit',e=>{
+  e.preventDefault();
+  const name=$('#fName').value.trim(), msg=$('#fMsg').value.trim();
+  if(!name || !msg) return;
+  const subject=encodeURIComponent(lang==='fa' ? `پیام از وب‌سایت — ${name}` : `Message from website — ${name}`);
+  const body=encodeURIComponent(`${msg}\n\n— ${name}`);
+  showToast(t('contact.toast'));
+  setTimeout(()=>{ window.location.href=`mailto:ramin.jelladat@gmail.com?subject=${subject}&body=${body}`; },600);
+  e.target.reset();
+});
+
+/* ═══════════ شروع ═══════════ */
+applyLang(false);
+})();
+</script>
+</body>
+</html>

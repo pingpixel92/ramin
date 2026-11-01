@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://ramin-djaladat.kdns.fr/sitemap.xml
